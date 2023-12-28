@@ -1,9 +1,53 @@
-<button mat-flat-button>Button</button>
+<div class="container">
+  <div class="navigation">
+    <div class="navigation__category">
+      <span class="navigation__category__name">Mail</span>
 
-<mat-nav-list>
-  @for (link of navLinks; track link) {
-    <a mat-list-item [activated]="link.id === activeLinkId" (click)="activeLinkId = link.id">{{ link.label }}</a>
-  }
-</mat-nav-list>
+      <mat-nav-list>
+        @for (link of navLinks; track link) {
+        <a mat-list-item [activated]="link.id === activeLinkId" (click)="activeLinkId = link.id">
+          <div class="testtt">
+            <mat-icon class="navigation__category__item__icon material-symbols-outlined">{{ link.icon }}</mat-icon>
+            <span>{{ link.label }}</span>
+          </div>
 
-<router-outlet></router-outlet>
+        </a>
+        }
+      </mat-nav-list>
+    </div>
+
+    <div class="navigation__category">
+      <span class="navigation__category__name">Labels</span>
+
+      <mat-nav-list>
+        @for (link of navLinksLabels; track link) {
+        <a mat-list-item [activated]="link.id === activeLinkId" (click)="activeLinkId = link.id">
+          <div class="testtt">
+            <mat-icon class="navigation__category__item__icon material-symbols-outlined">{{ link.icon }}</mat-icon>
+            <span>{{ link.label }}</span>
+          </div>
+        </a>
+        }
+      </mat-nav-list>
+    </div>
+
+
+
+  </div>
+
+  <main class="main"></main>
+
+</div>
+
+<!-- <div class="container">
+  <mat-nav-list>
+    <a *ngFor="let link of navLinks" class="list-item" [class.active]="link.id === activeLinkId">
+      <mat-icon>{{ link.icon }}</mat-icon>
+      <span>{{ link.label }}</span>
+    </a>
+  </mat-nav-list>
+  <main class="main">
+  </main>
+</div>
+
+<router-outlet></router-outlet> -->
