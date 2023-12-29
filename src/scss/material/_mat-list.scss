@@ -1,0 +1,23 @@
+.mdc-list-item {
+    --_icon-state-opacity: 0;
+
+    &::before {
+        display: none;
+    }
+
+    &:hover {
+        --_icon-state-opacity: var(--mdc-list-list-item-hover-state-layer-opacity);
+    }
+
+    .custom-icon {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--mdc-list-list-item-hover-state-layer-color);
+            opacity: var(--_icon-state-opacity);
+        }
+    }
+}
