@@ -17,7 +17,7 @@
     </div>
 
     <div class="line"></div>
-    
+
     <div class="navigation__category">
       <span class="navigation__category__name">Labels</span>
       <mat-nav-list>
@@ -34,6 +34,12 @@
 
   </div>
 
-  <main class="main"></main>
+  <main class="main">
+    @for (book of books; track book) {
+    <mat-card>
+      <mat-card-content>{{book.author + " : " + book.name}}</mat-card-content>
+    </mat-card>
+    }
+  </main>
 
 </div>

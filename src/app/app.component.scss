@@ -23,6 +23,7 @@ $phone-media: 450px;
 .main.main {
     background-color: var(--md-sys-color-scrim);
     opacity: 0.4;
+    //padding: 16px;
 
     @media(max-width: $phone-media) {
         grid-column: 1;
