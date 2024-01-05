@@ -34,6 +34,8 @@ export class AppComponent implements OnInit {
 
   public books: IBook[] = [];
 
+  public activeBookId: number = 0;
+
   constructor(
     private bookService: BookService
   ) {
@@ -41,6 +43,17 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.loadBook();
+  }
+
+  public addBook() : void {
+    this.bookService.addBook().subscribe(() => {
+      this.loadBook();
+    })
+  }
+
+  public loadBook() : void {
+    console.log("loadBook");
     this.bookService.getAll().subscribe(books => {
       this.books = books;
     });
@@ -49,8 +62,8 @@ export class AppComponent implements OnInit {
   public navLinks: INavigationItem[] = [
     {
       id: '1',
-      label: 'Inbox',
-      icon: 'inbox'
+      label: 'All books',
+      icon: 'book_2'
     },
     {
       id: '2',

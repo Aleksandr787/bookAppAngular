@@ -60,9 +60,25 @@ export class BookService {
     }
 ];
 
+  private _currentId : number = 10;
   constructor() { }
 
   public getAll() : Observable<IBook[]> {
     return of(this._books);
+  }
+
+  public addBook() : Observable<any> {
+    console.log("addBook");
+    this._currentId++;
+
+    let book : IBook = {
+      id: this._currentId,
+      name: "Name_addBook",
+      author: "Author_addBook",
+    }
+
+    this._books.push(book);
+
+    return of();
   }
 }

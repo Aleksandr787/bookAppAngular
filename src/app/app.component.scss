@@ -21,8 +21,9 @@ $phone-media: 450px;
 }
 
 .main.main {
-    background-color: var(--md-sys-color-scrim);
-    opacity: 0.4;
+    background-color: rgba(black, 0.4);
+    //background-color: var(--md-sys-color-scrim);
+    //opacity: 0.4;
     //padding: 16px;
 
     @media(max-width: $phone-media) {
@@ -136,9 +137,17 @@ $phone-media: 450px;
     }
 }
 
-.main {
-    height: 100%;
-    margin: 0px;
-    grid-column: 2;
-    background: var(--md-sys-color-scrim);
+// .main {
+//     height: 100%;
+//     margin: 0px;
+//     grid-column: 2;
+//     background: var(--md-sys-color-scrim);
+// }
+
+.book-list {
+    //background: lightblue;
+    display: flex;
+    padding: 8px;
+    gap: 8px;
+    flex-direction: column;
 }
