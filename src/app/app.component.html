@@ -1,18 +1,10 @@
-<button mat-flat-button (click)="addBook()">Add Book</button>
-
 <mat-nav-list>
-  @for (link of navLinks; track link) {
-    <a #menuItem mat-list-item [activated]="link.id === activeLinkId" (click)="activeLinkId = link.id">
-      <div class="custom-icon" style="padding-inline: 32px">AA</div>
-      {{ link.label }}
-    </a>
-  }
+  <a mat-list-item routerLink="books" routerLinkActive="active">
+    Books
+  </a>
+  <a mat-list-item routerLink="books-2" routerLinkActive="active">
+    Books 2
+  </a>
 </mat-nav-list>
-
-@for (book of books; track book) {
-  <div>
-    {{ book.author + ": " + book.name }}
-  </div>
-}
 
 <router-outlet></router-outlet>

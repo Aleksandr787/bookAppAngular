@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IBook } from '../interfaces/book';
-import { Observable, delay, of } from 'rxjs';
+import { IAddBook, IBook, IEditBook } from '../interfaces/book';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,10 @@ export class BookService {
     {
       id: this._currentId,
       name: 'Дюна',
-      author: 'Френк Герберт'
+      author: {
+        firstName: 'Френк',
+        lastName: 'Герберт'
+      }
     }
   ];
 
@@ -24,15 +27,22 @@ export class BookService {
     return of(this._books);
   }
 
-  public addBook(): Observable<any> {
-    console.log('AddBook called');
+  public addBook(addBookRequest: IAddBook): Observable<any> {
     this._currentId++;
     let book: IBook = {
       id: this._currentId,
-      name: 'Инквизитор Эйзенхорн',
-      author: 'Ден Аббнет'
+      name: addBookRequest.name,
+      author: addBookRequest.author
     };
     this._books.push(book);
     return of();
   }
+
+  public editBook(editBookRequest: IEditBook):  Observable<any> {
+    const index = this._books.findIndex(book => book.id === editBookRequest.id);
+    if(index === -1) return of();
+    this._books[index] = editBookRequest;
+    return of();
+  }
+
 }

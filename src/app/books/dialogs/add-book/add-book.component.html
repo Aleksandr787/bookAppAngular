@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Add Book</h1>
+<div mat-dialog-content>
+
+    <form [formGroup]="bookForm">
+
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Author's First Name</mat-label>
+            <input matInput formControlName="authorFirstName">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Author's Last Name</mat-label>
+            <input matInput formControlName="authorLastName">
+        </mat-form-field>
+
+    </form>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onClose()">Close</button>
+    <button mat-button (click)="onOk()" [disabled]="bookForm.invalid">Ok</button>
+</div>

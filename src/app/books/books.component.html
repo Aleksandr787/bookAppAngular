@@ -1,0 +1,7 @@
+<button mat-flat-button (click)="addBook()">Add Book</button>
+
+@for (book of books; track book) {
+  <div (click)="editBook(book)">
+    {{ book | book }}
+  </div>
+}

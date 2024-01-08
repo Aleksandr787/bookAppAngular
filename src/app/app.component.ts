@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { BookService } from './services/book.service';
@@ -19,7 +19,8 @@ interface INavigationItem {
     CommonModule,
     RouterOutlet,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    RouterModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -36,12 +37,6 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this.loadBooks();
-  }
-
-  public addBook(): void {
-    this.bookService.addBook().subscribe(() => {
-      this.loadBooks();
-    });
   }
 
   private loadBooks(): void {
