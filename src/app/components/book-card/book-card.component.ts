@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
-import { IBook, IBookCard } from '../../interfaces/book';
-import { BookService } from '../../services/book.service';
+import { IBookCard } from '../../interfaces/book';
+import { BookImageService } from '../../services/book-image.service';
 
 @Component({
   selector: 'cm-book-card',
@@ -15,111 +15,29 @@ import { BookService } from '../../services/book.service';
   ],
   template: `
     <div class="container">
-      <!-- @for (book of books; track book) {
+
+      @for (book of books; track book) {
         <div matRipple class="card">
-        <img src={{book.ima}} alt="" class="card__image">
+        <img src={{book.image}} alt="" class="card__image">
         <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
+          <span class="card__info__name">{{book.name}}</span>
+          <span class="card__info__author">{{book.author}}</span>
         </div>
       </div>  
-      } -->
-      <div matRipple class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div matRipple class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div matRipple class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div matRipple class="card">
-        <img src="https://knigimarket.com/wp-content/uploads/2021/11/cover1__w6098708090-1.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg" alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">Гарри Поттер и философский камень</span>
-          <span class="card__info__author">Джоан Роулинг</span>
-        </div>
-      </div>
+      }
+
     </div>
   `,
   styleUrl: './book-card.component.scss'
 })
 export class BookCardComponent {
 
-  public books: IBook[] = [];
+  public books: IBookCard[] = [];
 
   public activeBookId: number = 0; //???
 
   constructor(
-    private bookService: BookService
+    private bookImageService: BookImageService
   ) { }
 
   public ngOnInit(): void {
@@ -128,13 +46,13 @@ export class BookCardComponent {
 
   public loadBook(): void {
     console.log("loadBook");
-    this.bookService.getAll().subscribe(books => {
+    this.bookImageService.getAll().subscribe(books => {
       this.books = books;
     });
   }
 
   public addBook(): void {
-    this.bookService.addBook().subscribe(() => {
+    this.bookImageService.addBook().subscribe(() => {
       this.loadBook();
     })
   }
