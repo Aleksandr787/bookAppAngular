@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { BookService } from './services/book.service';
 import { IBook } from './interfaces/book';
-
+import { MatRippleModule } from '@angular/material/core';
+import { BookListCardComponent } from './book-list-card/book-list-card.component';
 
 interface INavigationItem {
   id: string,
@@ -21,15 +22,19 @@ interface INavigationItem {
   imports: [
     CommonModule,
     RouterOutlet,
+    RouterModule,
     MatButtonModule,
     MatListModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatRippleModule,
+    BookListCardComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+// [x: string]: any;
   title = 'lection-angular';
 
   public books: IBook[] = [];

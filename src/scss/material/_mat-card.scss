@@ -1,8 +1,17 @@
 .mat-mdc-card {
     --mdc-elevated-card-container-shape: 12px;
     --mdc-elevated-card-container-color: var(--md-sys-color-surface-container-low);
+    --mat-card-subtitle-text-color: var(--md-sys-color-on-surface-variant);
+
+    // :hover{
+    //     border-radius: var(--mdc-elevated-card-container-shape);
+
+    //     //background-color: rgba(var(--md-sys-color-on-secondary-container), 0.08);
+    //     background-color: var(--md-sys-color-on-secondary-container);
+    //     opacity: 0.08;
+    // }
 }
 
 .mat-mdc-card-content {
-    color: var(--md-sys-color-on-surface-variant);
+    color: var(--md-sys-color-on-surface);
 }
