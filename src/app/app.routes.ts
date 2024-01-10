@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { BookListCardComponent } from './book-list-card/book-list-card.component';
-import { TestComponent } from './test/test.component';
+import { BookCardComponent } from './components/book-card/book-card.component';
 
 export const routes: Routes = [
     {
@@ -10,7 +10,7 @@ export const routes: Routes = [
     },
     {
         path: 'main',
-        component: TestComponent
+        component: BookCardComponent
     },
     {
         path: 'books',

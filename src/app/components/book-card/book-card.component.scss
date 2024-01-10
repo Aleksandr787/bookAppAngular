@@ -1,0 +1,70 @@
+// .wrap{
+//     display: flex;
+//     width: 100%;
+//     align-items: center;
+//     justify-content: center;
+// }
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    //flex-direction: row;
+    justify-content: center;
+    margin-top: 24px;
+    box-sizing: border-box;
+    align-content: flex-start;
+}
+
+.card {
+    display: grid;
+    grid-template-rows: auto;
+    border-radius: 16px;
+    background: var(--md-sys-color-surface-container-high);
+    height: auto;
+    width: 200px;
+    box-sizing: border-box;
+    margin: 10px;
+    //box-shadow: 0px 2px 5px rgba(207, 193, 193, 0.5);
+
+    &:hover {
+        background-color: var(--md-sys-color-card-hover);
+
+        .card__info__name{
+          color: var(--md-sys-color-on-secondary-container);
+        }
+
+        .card__info__author {
+          color: var(--md-sys-color-on-secondary-container);
+        }
+    }
+
+    &__image {
+        display: block;
+        width: 100%; /* Обновлено */
+        height: 300px; /* Добавлено */
+        border-radius: 16px;
+        object-fit: cover; /* Обновлено */
+        box-sizing: border-box;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding: 16px;
+        gap: 4px;
+
+        &__name {
+            color: var(--md-sys-color-on-surface);
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        &__author {
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 14px;
+            font-weight: 400;
+        }
+    }
+}

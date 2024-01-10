@@ -50,6 +50,7 @@
     --md-sys-color-surface-container-lowest: var(--md-sys-color-surface-container-lowest-light);
     --md-sys-color-surface-bright: var(--md-sys-color-surface-bright-light);
     --md-sys-color-surface-dim: var(--md-sys-color-surface-dim-light);
+    --md-sys-color-card-hover: var(--md-sys-color-card-hover-light);
 }
 
 @mixin _dark-theme {
@@ -102,6 +103,7 @@
     --md-sys-color-surface-container-lowest: var(--md-sys-color-surface-container-lowest-dark);
     --md-sys-color-surface-bright: var(--md-sys-color-surface-bright-dark);
     --md-sys-color-surface-dim: var(--md-sys-color-surface-dim-dark);
+    --md-sys-color-card-hover: var(--md-sys-color-card-hover-dark);
 }
 
 :root {
