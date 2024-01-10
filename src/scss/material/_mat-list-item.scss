@@ -7,21 +7,26 @@ $phone-media: 450px;
     height: auto;
     padding-inline: 12px;
     padding-bottom: 0px;
-    --mdc-list-list-item-hover-state-layer-opacity: 0.08;
-    --mdc-list-list-item-hover-state-layer-color: var(--md-sys-color-on-secondary-container);
-    --mdc-list-list-item-hover-label-text-color: var(--md-sys-color-on-secondary-container);
+    
     --mdc-list-list-item-container-shape: 24px;
     --mdc-list-list-item-one-line-container-height: 56px;
+    
+    --mdc-list-list-item-hover-state-layer-opacity: 0.08 !important;
+    --mdc-list-list-item-hover-state-layer-color: var(--md-sys-color-on-secondary-container) !important;
+    --mdc-list-list-item-hover-label-text-color: var(--md-sys-color-on-secondary-container) !important;
+    
+    --mdc-list-list-item-focus-label-text-color: var(--md-sys-color-on-secondary-container);
+    --mdc-list-list-item-focus-state-layer-color: var(--md-sys-color-on-secondary-container);
+    --mdc-list-list-item-focus-state-layer-opacity: 0.08;
 
     @media(max-width: $tablet-media) {
         display: flex;
         flex-direction: column;
-
         gap: 4px;
+        
         --mdc-list-list-item-container-shape: 16px;
     }
 
-    
     @media(max-width: $phone-media) {
         display: flex;
         flex-direction: row;
@@ -31,6 +36,8 @@ $phone-media: 450px;
         padding-bottom: 4px;
     }
 }
+
+
 
 .mdc-list-item.mdc-list-item {
     @media(max-width: $tablet-media) {

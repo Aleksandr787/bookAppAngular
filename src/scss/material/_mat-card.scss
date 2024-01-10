@@ -2,14 +2,12 @@
     --mdc-elevated-card-container-shape: 12px;
     --mdc-elevated-card-container-color: var(--md-sys-color-surface-container-low);
     --mat-card-subtitle-text-color: var(--md-sys-color-on-surface-variant);
+}
 
-    // :hover{
-    //     border-radius: var(--mdc-elevated-card-container-shape);
+.mat-mdc-card:hover {
+    //background-color: rgba(212,228,246, 0.08);
+    //background-color: rgba(123, 153, 177, 0.08);
 
-    //     //background-color: rgba(var(--md-sys-color-on-secondary-container), 0.08);
-    //     background-color: var(--md-sys-color-on-secondary-container);
-    //     opacity: 0.08;
-    // }
 }
 
 .mat-mdc-card-content {

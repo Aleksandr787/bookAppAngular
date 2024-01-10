@@ -16,12 +16,12 @@ import { IBook } from '../interfaces/book';
   template: `
     <div class="book-list">
       @for (book of books; track book) {
-      <mat-card>
+      <mat-card mat-card-hover>
         <div class="testt">
-                  <mat-card-content matRipple>
-          <mat-card-title>{{book.name}}</mat-card-title>
-          <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
-        </mat-card-content>
+          <mat-card-content matRipple mat-card-hover>
+            <mat-card-title>{{book.name}}</mat-card-title>
+            <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+          </mat-card-content>
         </div>
 
       </mat-card>
@@ -33,6 +33,8 @@ import { IBook } from '../interfaces/book';
 export class BookListCardComponent implements OnInit {
 
   public books: IBook[] = [];
+
+  public activeBookId: number = 0; //???
 
   constructor(
     private bookService: BookService
@@ -47,5 +49,11 @@ export class BookListCardComponent implements OnInit {
     this.bookService.getAll().subscribe(books => {
       this.books = books;
     });
+  }
+
+  public addBook(): void {
+    this.bookService.addBook().subscribe(() => {
+      this.loadBook();
+    })
   }
 }
