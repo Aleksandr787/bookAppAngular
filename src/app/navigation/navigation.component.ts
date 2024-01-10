@@ -34,14 +34,14 @@ import { INavigationItem } from '../interfaces/INavigationItem';
             </div>
           </a>
 
-          @for (link of navLinks; track link) {
+          <!-- @for (link of navLinks; track link) {
           <a mat-list-item [activated]="link.id === activeLinkId" (click)="activeLinkId = link.id">
             <div class="navigation__category__item">
               <mat-icon class="navigation__category__item__icon material-symbols-outlined">{{ link.icon }}</mat-icon>
               <span>{{ link.label }}</span>
             </div>
           </a>
-          }
+          } -->
         </mat-nav-list>
       </div>
 

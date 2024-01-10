@@ -5,9 +5,13 @@ $tablet-media: 800px;
 $phone-media: 450px;
 
 .navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
     box-sizing: border-box;
     overflow: auto;
     height: 100%;
+    z-index: 10;
 
     background: var(--md-sys-color-surface-container-low);
     width: 360px;
@@ -21,7 +25,10 @@ $phone-media: 450px;
     }
 
     @media(max-width: $phone-media) {
+        bottom: 0;
         display: flex;
+        top: unset;
+        left: unset;
         flex-direction: row;
         justify-content: center;
         height: 80px;
