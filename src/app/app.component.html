@@ -1,4 +1,11 @@
+<button *ngIf="authService.isAuthorized" mat-flat-button (click)="logout()">Logout</button>
+
+<div *ngIf="authService.isAuthorized">Welcome {{ authService.userName }}</div>
+
 <mat-nav-list>
+  <a mat-list-item routerLink="login" routerLinkActive="active">
+    Login
+  </a>
   <a mat-list-item routerLink="books" routerLinkActive="active">
     Books
   </a>

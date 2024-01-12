@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { BookService } from './services/book.service';
 import { IBook } from './interfaces/book';
+import { AuthService } from './auth/auth.service';
 
 interface INavigationItem {
   id: string,
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
   public books: IBook[] = [];
 
   constructor(
+    public authService: AuthService,
     private bookService: BookService
   ) {    
   }
@@ -43,6 +45,10 @@ export class AppComponent implements OnInit {
     this.bookService.getAll().subscribe(bookFromService => {
       this.books = bookFromService;
     });
+  }
+
+  public logout(): void {
+    this.authService.logout();
   }
 
   public navLinks: INavigationItem[] = [
