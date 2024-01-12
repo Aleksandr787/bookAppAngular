@@ -12,7 +12,7 @@ import { INavigationItem } from '../interfaces/INavigationItem';
     CommonModule,
     MatListModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
   ],
   template: `
     <div class="navigation">
@@ -30,10 +30,15 @@ import { INavigationItem } from '../interfaces/INavigationItem';
           <a mat-list-item routerLink="books" routerLinkActive="mdc-list-item--activated">
             <div class="navigation__category__item">
               <mat-icon class="navigation__category__item__icon material-symbols-outlined">book_2</mat-icon>
-              <span>My Books</span>
+              <span>My books</span>
             </div>
           </a>
-
+          <a mat-list-item>
+            <div class="navigation__category__item">
+              <mat-icon class="navigation__category__item__icon material-symbols-outlined">post_add</mat-icon>
+              <span>Add book</span>
+            </div>
+          </a>
           <!-- @for (link of navLinks; track link) {
           <a mat-list-item [activated]="link.id === activeLinkId" (click)="activeLinkId = link.id">
             <div class="navigation__category__item">
@@ -66,6 +71,9 @@ import { INavigationItem } from '../interfaces/INavigationItem';
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
+  constructor(
+  ){
+  }
 
   public navLinks: INavigationItem[] = [
     {

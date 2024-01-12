@@ -4,16 +4,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
 import { IBookCard } from '../../interfaces/book';
 import { BookImageService } from '../../services/book-image.service';
-
+import { AuthorPipe } from "../../pipes/author.pipe";
+import { MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { AddBookComponent } from '../dialogs/add-book/add-book.component';
+import { MatButtonModule } from '@angular/material/button'
 @Component({
-  selector: 'cm-book-card',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatRippleModule
-  ],
-  template: `
+    selector: 'cm-book-card',
+    standalone: true,
+    template: `
+    <a mat-raised-button color="primary" (click)="addBook()"> Add BOOOOOOOOOOK </a>
     <div class="container">
 
       @for (book of books; track book) {
@@ -21,23 +20,32 @@ import { BookImageService } from '../../services/book-image.service';
         <img src={{book.image}} alt="" class="card__image">
         <div class="card__info">
           <span class="card__info__name">{{book.name}}</span>
-          <span class="card__info__author">{{book.author}}</span>
+          <span class="card__info__author">{{book | author}}</span>
         </div>
       </div>  
       }
 
     </div>
   `,
-  styleUrl: './book-card.component.scss'
+    styleUrl: './book-card.component.scss',
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatButtonModule,
+        MatRippleModule,
+        MatDialogModule,
+        AuthorPipe
+    ]
 })
 export class BookCardComponent {
 
   public books: IBookCard[] = [];
 
-  public activeBookId: number = 0; //???
+  //public activeBookId: number = 0; //???
 
   constructor(
-    private bookImageService: BookImageService
+    private bookImageService: BookImageService,
+    private dialog: MatDialog,
   ) { }
 
   public ngOnInit(): void {
@@ -52,8 +60,14 @@ export class BookCardComponent {
   }
 
   public addBook(): void {
-    this.bookImageService.addBook().subscribe(() => {
-      this.loadBook();
-    })
+    const dialogRef = this.dialog.open(AddBookComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed');
+    });
+
+    // this.bookImageService.addBook().subscribe(() => {
+    //   this.loadBook();
+    // })
   }
 }

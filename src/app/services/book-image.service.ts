@@ -11,49 +11,49 @@ export class BookImageService {
     {
       id: 1,
       name: "Гарри Поттер и философский камень",
-      author: "Джоан Роулинг",
+      author: { firstname: "Джоан", lastname: "Роулинг"},
       image: "https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg"
     },
     {
       id: 2,
       name: "Гарри Поттер и философский камень",
-      author: "Джоан Роулинг",
+      author: { firstname: "Джоан", lastname: "Роулинг"},
       image: "https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg"
     },
     {
       id: 3,
       name: "Гарри Поттер и философский камень",
-      author: "Джоан Роулинг",
+      author: { firstname: "Джоан", lastname: "Роулинг"},
       image: "https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg"
     },
     {
       id: 4,
       name: "Гарри Поттер и философский камень",
-      author: "Джоан Роулинг",
+      author: { firstname: "Джоан", lastname: "Роулинг"},
       image: "https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg"
     },
     {
       id: 5,
       name: "Гарри Поттер и философский камень",
-      author: "Джоан Роулинг",
+      author: { firstname: "Джоан", lastname: "Роулинг"},
       image: "https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg"
     },
     {
       id: 6,
       name: "Гарри Поттер и философский камень",
-      author: "Джоан Роулинг",
+      author: { firstname: "Джоан", lastname: "Роулинг"},
       image: "https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg"
     },
     {
       id: 7,
       name: "Гарри Поттер и философский камень",
-      author: "Джоан Роулинг",
+      author: { firstname: "Джоан", lastname: "Роулинг"},
       image: "https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg"
     },
     {
       id: 8,
       name: "Гарри Поттер и философский камень",
-      author: "Джоан Роулинг",
+      author: { firstname: "Джоан", lastname: "Роулинг"},
       image: "https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg"
     }
 ];
@@ -72,7 +72,7 @@ export class BookImageService {
     let book : IBookCard = {
       id: this._currentId,
       name: "Name_addBook",
-      author: "Author_addBook",
+      author: { firstname: "FirstName", lastname: "LastName"},
       image: "https://upload.wikimedia.org/wikipedia/ru/b/b4/Harry_Potter_and_the_Philosopher%27s_Stone_%E2%80%94_movie.jpg"
     }
 
