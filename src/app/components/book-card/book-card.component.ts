@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
 import { IAddBookCard, IBookCard, IEditBookCard } from '../../interfaces/book';
-import { BookImageService } from '../../services/book-image.service';
-import { AuthorPipe } from "../../pipes/author.pipe";
+import { BookImageService } from '../../services/book-image/book-image.service';
+import { AuthorPipe } from "../../pipes/author/author.pipe";
 import { MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { AddBookComponent } from '../dialogs/add-book/add-book.component';
 import { MatButtonModule } from '@angular/material/button'

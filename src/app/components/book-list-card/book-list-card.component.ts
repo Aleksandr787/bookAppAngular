@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
-import { BookService } from '../services/book.service';
-import { IBook } from '../interfaces/book';
+import { BookService } from '../../services/book/book.service';
+import { IBook } from '../../interfaces/book';
 
 @Component({
   selector: 'cm-book-list-card',

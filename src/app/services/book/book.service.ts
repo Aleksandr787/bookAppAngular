@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IBook } from '../interfaces/book';
+import { IBook } from '../../interfaces/book';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

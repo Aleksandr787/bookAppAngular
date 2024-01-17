@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IAddBookCard, IBookCard, IEditBookCard } from '../interfaces/book';
+import { IAddBookCard, IBookCard, IEditBookCard } from '../../interfaces/book';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

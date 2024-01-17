@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IBookCard } from '../interfaces/book';
+import { IBookCard } from '../../interfaces/book';
 
 @Pipe({
   name: 'author',

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
-import { INavigationItem } from '../interfaces/INavigationItem';
+import { INavigationItem } from '../../interfaces/INavigationItem';
 
 @Component({
   selector: 'cm-navigation',
