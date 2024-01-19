@@ -1,9 +1,10 @@
 import { IAuthor } from "./author";
 
 export interface IBook {
-    id: number;
+    id: string;
+    userId: string,
     name: string;
-    author: IAuthor;
+    author: string;
 }
 
 export interface IAddBook {
@@ -12,7 +13,7 @@ export interface IAddBook {
 }
 
 export interface IEditBook {
-    id: number;
+    id: string;
     name: string;
     author: IAuthor;
 }

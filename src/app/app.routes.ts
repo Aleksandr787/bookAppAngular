@@ -4,6 +4,7 @@ import { Books2Component } from './books-2/books-2.component';
 import { authGuard } from './auth/guards/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { nonAuthGuard } from './auth/guards/non-auth.guard';
+import { RegisterComponent } from './auth/register/register.component';
 
 export const routes: Routes = [
     // {
@@ -14,6 +15,11 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
+        canActivate: [nonAuthGuard]
+    },
+    {
+        path: 'register',
+        component: RegisterComponent,
         canActivate: [nonAuthGuard]
     },
     {

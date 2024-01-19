@@ -35,8 +35,8 @@ export class AddBookComponent implements OnInit {
   public ngOnInit(): void {
     if (this.data) {
       this.bookForm.get('name')?.setValue(this.data.name);
-      this.bookForm.get('authorFirstName')?.setValue(this.data.author.firstName);
-      this.bookForm.get('authorLastName')?.setValue(this.data.author.lastName);
+      // this.bookForm.get('authorFirstName')?.setValue(this.data.author.firstName);
+      // this.bookForm.get('authorLastName')?.setValue(this.data.author.lastName);
     }
   }
 
