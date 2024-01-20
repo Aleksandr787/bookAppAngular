@@ -24,9 +24,9 @@ export class AppComponent {
   ) {
   }
 
-  public login() : void {
-    this.authService.login();
-  }
+  // public login() : void {
+  //   this.authService.login();
+  // }
 
   
   public logout() : void {

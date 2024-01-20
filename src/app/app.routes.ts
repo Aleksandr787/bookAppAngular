@@ -4,14 +4,13 @@ import { BookCardComponent } from './components/book-card/book-card.component';
 import { authGuard } from './guards/auth/auth.guard';
 import { LoginComponent } from './components/login/login/login.component';
 import { nonAuthGuard } from './guards/non-auth/non-auth.guard';
-import { TestComponent } from './components/test/test.component';
 
 export const routes: Routes = [
-    // {
-    //     path: '',
-    //     pathMatch: 'full',
-    //     redirectTo: 'main'
-    // },
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'main'
+    },
     {
         path: 'main',
         component: BookCardComponent,

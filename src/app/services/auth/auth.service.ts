@@ -1,28 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ILogin } from '../../interfaces/login';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _isAutorized : boolean = false;
-
+  private _user : string = '';
+  
   constructor(
     private router : Router
   ) { }
 
   public get isAutorized() : boolean {
-    return this._isAutorized;
+    return this._user != '';
   }
 
-  public login() : void {
-    this._isAutorized = true;
-    this.router.navigate(['/']);
+  public get user() : string {
+    return this._user;
+  }
+
+  public login(loginModel : ILogin) : void {
+    this._user = loginModel.email;
+    this.router.navigate(['/main']);
   }
 
   public logout() : void {
-    this._isAutorized = false;
+    this._user = '';
     this.router.navigate(['/login']);
   }
 }
