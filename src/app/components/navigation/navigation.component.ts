@@ -4,6 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { INavigationItem } from '../../interfaces/INavigationItem';
+import { AuthService } from '../../services/auth/auth.service';
+import { MainPageComponent } from '../main-page/main-page/main-page.component';
 
 @Component({
   selector: 'cm-navigation',
@@ -39,95 +41,23 @@ import { INavigationItem } from '../../interfaces/INavigationItem';
               <span>Add book</span>
             </div>
           </a>
-          <!-- @for (link of navLinks; track link) {
-          <a mat-list-item [activated]="link.id === activeLinkId" (click)="activeLinkId = link.id">
+          <a mat-list-item (click)="mainPage.logout()">
             <div class="navigation__category__item">
-              <mat-icon class="navigation__category__item__icon material-symbols-outlined">{{ link.icon }}</mat-icon>
-              <span>{{ link.label }}</span>
+              <mat-icon class="navigation__category__item__icon material-symbols-outlined">logout</mat-icon>
+              <span>Logout</span>
             </div>
           </a>
-          } -->
         </mat-nav-list>
       </div>
 
-      <div class="line"></div>
-
-      <div class="navigation__category">
-        <span class="navigation__category__name">Labels</span>
-        <mat-nav-list>
-          @for (link of navLinksLabels; track link) {
-          <a mat-list-item [activated]="link.id === activeLinkId" (click)="activeLinkId = link.id">
-            <div class="navigation__category__item">
-              <mat-icon class="navigation__category__item__icon material-symbols-outlined">{{ link.icon }}</mat-icon>
-              <span>{{ link.label }}</span>
-            </div>
-          </a>
-          }
-        </mat-nav-list>
-      </div>
-
+      <!-- <div class="line"></div> -->
     </div>
   `,
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
   constructor(
+    public mainPage : MainPageComponent
   ){
   }
-
-  public navLinks: INavigationItem[] = [
-    {
-      id: '1',
-      label: 'All books',
-      icon: 'book_2'
-    },
-    {
-      id: '2',
-      label: 'Outbox',
-      icon: 'send'
-    },
-    {
-      id: '3',
-      label: 'Favorites',
-      icon: 'Favorite'
-    },
-    {
-      id: '4',
-      label: 'Trash',
-      icon: 'delete'
-    }
-  ];
-
-  // public getLinkId(index: number): string | undefined {
-  //   if (index >= 0 && index < this.navLinks.length) {
-  //     return this.navLinks[index].id;
-  //   }
-  //   return undefined;
-  // }
-
-  public navLinksLabels: INavigationItem[] = [
-    {
-      id: '5',
-      label: 'Label',
-      icon: 'Fiber_manual_record'
-    },
-    {
-      id: '6',
-      label: 'Label',
-      icon: 'change_history'
-    },
-    {
-      id: '7',
-      label: 'Label',
-      icon: 'stop'
-    },
-    {
-      id: '8',
-      label: 'Label',
-      icon: 'stop'
-    }
-  ];
-
-  public activeLinkId: string = 'first';
-
 }

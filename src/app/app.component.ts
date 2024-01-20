@@ -33,8 +33,8 @@ export class AppComponent {
     this.authService.logout();
   }
 
-  public isAutorized() : boolean {
-    return this.authService.isAutorized;
-  }
+  // public isAutorized() : boolean {
+  //   return this.authService.isAutorized;
+  // }
   title = 'lection-angular';
 }
