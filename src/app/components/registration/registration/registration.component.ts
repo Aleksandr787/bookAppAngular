@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../../services/auth/auth.service';
-import { ILogin } from '../../../interfaces/login';
+import { IRegister } from '../../../interfaces/register';
 
 @Component({
   selector: 'cm-registration',
@@ -21,6 +21,11 @@ import { ILogin } from '../../../interfaces/login';
     <div class="containerRegistration">
       <form [formGroup]="bookForm" class="bookCardForm">
         <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="name.hasError('required')">Name is required</mat-error>    
+        </mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email">
           <mat-error *ngIf="email.hasError('required')">Email is required</mat-error>    
@@ -33,7 +38,9 @@ import { ILogin } from '../../../interfaces/login';
         </mat-form-field>
       </form>
 
-      <button mat-flat-button [disabled]="bookForm.invalid" (click)="login()">Sign up</button>
+      <button mat-flat-button [disabled]="bookForm.invalid" (click)="register()">Create account</button>
+      <button mat-flat-button (click)="logout()">Already have an account? Login</button>
+
 
       <!-- <div mat-dialog-actions>
         <button mat-flat-button (click)="onClose()">No Thanks</button>
@@ -44,35 +51,40 @@ import { ILogin } from '../../../interfaces/login';
   styleUrl: './registration.component.scss'
 })
 export class RegistrationComponent {
-  
+
   constructor(
     private _authService: AuthService
-  ){}
+  ) { }
 
   bookForm = new FormGroup({
     name: new FormControl<string>('', [Validators.required]),
-    email: new FormControl<string>('',[ Validators.required, Validators.email]),
+    email: new FormControl<string>('', [Validators.required, Validators.email]),
     password: new FormControl<string>('', [Validators.required]),
   });
 
-  
-  public get name() : FormControl<string> {
+
+  public get name(): FormControl<string> {
     return this.bookForm.get('name') as FormControl<string>;
   }
 
-  public get email() : FormControl<string> {
+  public get email(): FormControl<string> {
     return this.bookForm.get('email') as FormControl<string>;
   }
 
-  public get password() : FormControl<string> {
+  public get password(): FormControl<string> {
     return this.bookForm.get('password') as FormControl<string>;
   }
 
-  public login(){
-    let loginModel : IRegistration = {
+  public register(): void {
+    let registerModel: IRegister = {
+      name: this.name.value,
       email: this.email.value,
       password: this.password.value
     }
-    this._authService.login(loginModel);
+    this._authService.register(registerModel);
+  }
+
+  public logout(): void {
+    this._authService.logout();
   }
 }

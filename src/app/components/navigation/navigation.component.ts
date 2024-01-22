@@ -6,6 +6,11 @@ import { RouterModule } from '@angular/router';
 import { INavigationItem } from '../../interfaces/INavigationItem';
 import { AuthService } from '../../services/auth/auth.service';
 import { MainPageComponent } from '../main-page/main-page/main-page.component';
+import { BookCardComponent } from '../book-card/book-card.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AddBookComponent } from '../dialogs/add-book/add-book.component';
+import { IAddBookCard } from '../../interfaces/book';
+import { BookImageService } from '../../services/book-image/book-image.service';
 
 @Component({
   selector: 'cm-navigation',
@@ -35,7 +40,7 @@ import { MainPageComponent } from '../main-page/main-page/main-page.component';
               <span>My books</span>
             </div>
           </a>
-          <a mat-list-item>
+          <a mat-list-item (click)="addBook()">
             <div class="navigation__category__item">
               <mat-icon class="navigation__category__item__icon material-symbols-outlined">post_add</mat-icon>
               <span>Add book</span>
@@ -57,7 +62,19 @@ import { MainPageComponent } from '../main-page/main-page/main-page.component';
 })
 export class NavigationComponent {
   constructor(
-    public mainPage : MainPageComponent
+    public mainPage : MainPageComponent,
+    private dialog: MatDialog,
+    private bookImageService: BookImageService,
+
   ){
+  }
+
+  public addBook(): void {
+    const dialogRef = this.dialog.open(AddBookComponent);
+
+    dialogRef.afterClosed().subscribe((result : IAddBookCard ) => {
+      if(!result) return;
+      this.bookImageService.addBook(result);
+    });
   }
 }

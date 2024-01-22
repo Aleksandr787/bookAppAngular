@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button'
     selector: 'cm-book-card',
     standalone: true,
     template: `
-    <a mat-raised-button color="primary" (click)="addBook()"> Add BOOOOOOOOOOK </a>
+    <!-- <a mat-raised-button color="primary" (click)="addBook()"> Add BOOOOOOOOOOK </a> -->
     <div class="container">
 
       @for (book of books; track book) {
@@ -68,12 +68,12 @@ export class BookCardComponent {
     });
   }
 
-  public addBook(): void {
-    const dialogRef = this.dialog.open(AddBookComponent);
+  // public addBook(): void {
+  //   const dialogRef = this.dialog.open(AddBookComponent);
 
-    dialogRef.afterClosed().subscribe((result : IAddBookCard ) => {
-      if(!result) return;
-      this.bookImageService.addBook(result);
-    });
-  }
+  //   dialogRef.afterClosed().subscribe((result : IAddBookCard ) => {
+  //     if(!result) return;
+  //     this.bookImageService.addBook(result);
+  //   });
+  // }
 }

@@ -7,6 +7,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   if(authService.isAutorized) return true;
   console.log("Autorization FALSEEEEEE")
   const router = inject(Router);
-  router.navigate(['/login']);
+  router.navigate(['/register']);
   return false;
 };

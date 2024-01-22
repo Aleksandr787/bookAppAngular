@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login/login.component';
 import { nonAuthGuard } from './guards/non-auth/non-auth.guard';
 import { MainPageComponent } from './components/main-page/main-page/main-page.component';
 import { TestComponent } from './components/test/test.component';
+import { RegistrationComponent } from './components/registration/registration/registration.component';
 
 export const routes: Routes = [
     {
@@ -33,6 +34,11 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
+        canActivate: [nonAuthGuard]
+    },
+    {
+        path: 'register',
+        component: RegistrationComponent,
         canActivate: [nonAuthGuard]
     },
 ];

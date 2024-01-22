@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ILogin } from '../../../interfaces/login';
 import { AuthService } from '../../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cm-login',
@@ -34,6 +35,7 @@ import { AuthService } from '../../../services/auth/auth.service';
       </form>
 
       <button mat-flat-button [disabled]="bookForm.invalid" (click)="login()">Sign up</button>
+      <button mat-flat-button (click)="toRegister()">Don't have an account? Sign up</button>
 
       <!-- <div mat-dialog-actions>
         <button mat-flat-button (click)="onClose()">No Thanks</button>
@@ -46,27 +48,32 @@ import { AuthService } from '../../../services/auth/auth.service';
 export class LoginComponent {
 
   constructor(
+    private _router: Router,
     private _authService: AuthService
-  ){}
+  ) { }
 
   bookForm = new FormGroup({
-    email: new FormControl<string>('',[ Validators.required, Validators.email]),
+    email: new FormControl<string>('', [Validators.required, Validators.email]),
     password: new FormControl<string>('', [Validators.required]),
   });
 
-  public get email() : FormControl<string> {
+  public get email(): FormControl<string> {
     return this.bookForm.get('email') as FormControl<string>;
   }
 
-  public get password() : FormControl<string> {
+  public get password(): FormControl<string> {
     return this.bookForm.get('password') as FormControl<string>;
   }
 
-  public login(){
-    let loginModel : ILogin = {
+  public login(): void {
+    let loginModel: ILogin = {
       email: this.email.value,
       password: this.password.value
     }
     this._authService.login(loginModel);
+  }
+
+  public toRegister(): void {
+    this._router.navigate(['/register']);
   }
 }
