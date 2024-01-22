@@ -1,7 +1,18 @@
 export interface IBook {
     id: number,
     name: string,
-    author: string,
+    author: IAuthor,
+}
+
+export interface IAddBook {
+    name: string,
+    author: IAuthor,
+}
+
+export interface IEditBook {
+    id: number,
+    name: string,
+    author: IAuthor,
 }
 
 export interface IBookCard {

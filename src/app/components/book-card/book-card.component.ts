@@ -6,7 +6,7 @@ import { IAddBookCard, IBookCard, IEditBookCard } from '../../interfaces/book';
 import { BookImageService } from '../../services/book-image/book-image.service';
 import { AuthorPipe } from "../../pipes/author/author.pipe";
 import { MatDialog, MatDialogModule} from '@angular/material/dialog';
-import { AddBookComponent } from '../dialogs/add-book/add-book.component';
+import { AddBookImageComponent } from '../dialogs/add-book-image/add-book-image.component';
 import { MatButtonModule } from '@angular/material/button'
 @Component({
     selector: 'cm-book-card',
@@ -17,12 +17,12 @@ import { MatButtonModule } from '@angular/material/button'
 
       @for (book of books; track book) {
         <div matRipple class="card" (click)="editBook(book)">
-        <img src={{book.image}} alt="" class="card__image">
-        <div class="card__info">
-          <span class="card__info__name">{{book.name}}</span>
-          <span class="card__info__author">{{book | author}}</span>
-        </div>
-      </div>  
+          <img src={{book.image}} alt="" class="card__image">
+          <div class="card__info">
+            <span class="card__info__name">{{book.name}}</span>
+            <span class="card__info__author">{{book | author}}</span>
+          </div>
+        </div>  
       }
 
     </div>
@@ -60,7 +60,7 @@ export class BookCardComponent {
   }
 
   public editBook(book: IEditBookCard): void {
-    const dialogRef = this.dialog.open(AddBookComponent, {data: book});
+    const dialogRef = this.dialog.open(AddBookImageComponent, {data: book});
 
     dialogRef.afterClosed().subscribe((result : IEditBookCard ) => {
       if(!result) return;

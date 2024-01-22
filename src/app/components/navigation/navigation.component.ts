@@ -8,9 +8,11 @@ import { AuthService } from '../../services/auth/auth.service';
 import { MainPageComponent } from '../main-page/main-page/main-page.component';
 import { BookCardComponent } from '../book-card/book-card.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AddBookComponent } from '../dialogs/add-book/add-book.component';
+import { AddBookImageComponent } from '../dialogs/add-book-image/add-book-image.component';
 import { IAddBookCard } from '../../interfaces/book';
 import { BookImageService } from '../../services/book-image/book-image.service';
+import { BookService } from '../../services/book/book.service';
+import { BookListCardComponent } from '../book-list-card/book-list-card.component';
 
 @Component({
   selector: 'cm-navigation',
@@ -40,7 +42,7 @@ import { BookImageService } from '../../services/book-image/book-image.service';
               <span>My books</span>
             </div>
           </a>
-          <a mat-list-item (click)="addBook()">
+          <a mat-list-item (click)="addBookDialog()">
             <div class="navigation__category__item">
               <mat-icon class="navigation__category__item__icon material-symbols-outlined">post_add</mat-icon>
               <span>Add book</span>
@@ -65,16 +67,20 @@ export class NavigationComponent {
     public mainPage : MainPageComponent,
     private dialog: MatDialog,
     private bookImageService: BookImageService,
+    private bookService : BookService
 
   ){
   }
 
-  public addBook(): void {
-    const dialogRef = this.dialog.open(AddBookComponent);
-
-    dialogRef.afterClosed().subscribe((result : IAddBookCard ) => {
-      if(!result) return;
-      this.bookImageService.addBook(result);
-    });
+  public addBookDialog(): void{
+    this.bookService.addBookDialog();
   }
+  // public addBook(): void {
+  //   const dialogRef = this.dialog.open(AddBookImageComponent);
+
+  //   dialogRef.afterClosed().subscribe((result : IAddBookCard ) => {
+  //     if(!result) return;
+  //     this.bookImageService.addBook(result);
+  //   });
+  // }
 }

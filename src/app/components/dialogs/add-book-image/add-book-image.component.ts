@@ -7,7 +7,7 @@ import { IAddBookCard, IBookCard, IEditBookCard } from '../../../interfaces/book
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'cm-add-book',
+  selector: 'cm-add-book-image',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -15,10 +15,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatButtonModule
   ],
-  templateUrl: './add-book.component.html',
-  styleUrl: './add-book.component.scss'
+  templateUrl: './add-book-image.component.html',
+  styleUrl: './add-book-image.component.scss'
 })
-export class AddBookComponent implements OnInit {
+export class AddBookImageComponent implements OnInit {
 
   bookForm = new FormGroup({
     name: new FormControl<string>('', Validators.required),
@@ -28,7 +28,7 @@ export class AddBookComponent implements OnInit {
   });
   
   constructor(
-    public dialogRef: MatDialogRef<AddBookComponent>,
+    public dialogRef: MatDialogRef<AddBookImageComponent>,
     @Inject(MAT_DIALOG_DATA) private data?: IBookCard,
   ) {    
   }

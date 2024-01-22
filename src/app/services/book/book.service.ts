@@ -1,84 +1,103 @@
 import { Injectable } from '@angular/core';
-import { IBook } from '../../interfaces/book';
+import { IAddBook, IBook, IEditBook } from '../../interfaces/book';
 import { Observable, of } from 'rxjs';
+import { AddBookComponent } from '../../components/dialogs/add-book/add-book/add-book.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
-  private _books : IBook[] = [
+  private _books: IBook[] = [
     {
       id: 1,
       name: "Гарри Поттер и философский камень",
-      author: "Джоан Роулинг"
+      author: { firstname: "Джоан", lastname: "Роулинг" },
     },
     {
       id: 2,
       name: "Война и мир",
-      author: "Лев Толстой"
+      author: { firstname: "Джоан", lastname: "Роулинг" },
     },
     {
       id: 3,
       name: "Государь",
-      author: "Никколо Макиавелли"
+      author: { firstname: "Джоан", lastname: "Роулинг" },
     },
     {
       id: 4,
       name: "Преступление и наказание",
-      author: "Федор Достоевский"
+      author: { firstname: "Джоан", lastname: "Роулинг" },
     },
     {
       id: 5,
       name: "Унесенные ветром",
-      author: "Маргарет Митчелл"
+      author: { firstname: "Джоан", lastname: "Роулинг" },
     },
     {
       id: 6,
       name: "1984",
-      author: "Джордж Оруэлл"
+      author: { firstname: "Джоан", lastname: "Роулинг" },
     },
     {
       id: 7,
       name: "Мастер и Маргарита",
-      author: "Михаил Булгаков"
+      author: { firstname: "Джоан", lastname: "Роулинг" },
     },
     {
       id: 8,
       name: "Улисс",
-      author: "Джеймс Джойс"
+      author: { firstname: "Джоан", lastname: "Роулинг" },
     },
     {
       id: 9,
       name: "Три товарища",
-      author: "Эрих Мария Ремарк"
+      author: { firstname: "Джоан", lastname: "Роулинг" },
     },
     {
       id: 10,
       name: "Граф Монте-Кристо",
-      author: "Александр Дюма"
+      author: { firstname: "Джоан", lastname: "Роулинг" },
     }
-];
+  ];
 
-  private _currentId : number = 10;
-  constructor() { }
+  private _currentId: number = 10;
+  constructor(
+    private dialog: MatDialog,
+  ) { }
 
-  public getAll() : Observable<IBook[]> {
+  public getAll(): Observable<IBook[]> {
     return of(this._books);
   }
 
-  public addBook() : Observable<any> {
+  public addBook(bookAdd: IAddBook): Observable<any> {
     console.log("addBook");
     this._currentId++;
 
-    let book : IBook = {
+    let book: IBook = {
       id: this._currentId,
-      name: "Name_addBook",
-      author: "Author_addBook",
+      name: bookAdd.name,
+      author: bookAdd.author,
     }
-
     this._books.push(book);
+    return of();
+  }
 
+  public addBookDialog(): void {
+    const dialogRef = this.dialog.open(AddBookComponent);
+
+    dialogRef.afterClosed().subscribe((result : IAddBook ) => {
+      if(!result) return;
+      this.addBook(result);
+    });
+  }
+
+  public editBook(editBookRequest : IEditBook) : Observable<any> {
+    const index = this._books.findIndex(book => book.id === editBookRequest.id);
+    if(index === -1) return of();
+
+    this._books[index] = editBookRequest;
     return of();
   }
 }
