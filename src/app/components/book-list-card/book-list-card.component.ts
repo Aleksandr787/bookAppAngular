@@ -6,6 +6,7 @@ import { BookService } from '../../services/book/book.service';
 import { IAddBook, IBook, IEditBook } from '../../interfaces/book';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBookComponent } from '../dialogs/add-book/add-book/add-book.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'cm-book-list-card',
@@ -13,10 +14,25 @@ import { AddBookComponent } from '../dialogs/add-book/add-book/add-book.componen
   imports: [
     CommonModule,
     MatCardModule,
+    MatIconModule,
     MatRippleModule
   ],
   template: `
+
+
     <div class="book-list">
+      @for (book of books; track book) {
+        <div class="book" matRipple (click)="editBook(book)">
+          <mat-icon class="book__icon material-symbols-outlined">book_2</mat-icon>
+          <div class="book__content">
+            <span class="book__content__name">{{book.name}}</span>
+            <span class="book__content__author">{{book.author.firstname}} {{book.author.lastname}}</span>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- <div class="book-list">
       @for (book of books; track book) {
       <mat-card mat-card-hover>
         <div class="testt">
@@ -28,7 +44,7 @@ import { AddBookComponent } from '../dialogs/add-book/add-book/add-book.componen
 
       </mat-card>
       }
-    </div>
+    </div> -->
   `,
   styleUrl: './book-list-card.component.scss'
 })

@@ -25,7 +25,11 @@ $phone-media: 450px;
 }
 
 .main.main {
-    background-color: rgba(black, 0.4);
+    //background-color: rgba(black, 0.4);
+    //background-color: rgba($color: #2b3137, $alpha: 0.4);
+    
+    //background-color: var(--md-ref-palette-neutral-variant20);
+    
     //background-color: var(--md-sys-color-scrim);
     //opacity: 0.4;
     //padding: 16px;

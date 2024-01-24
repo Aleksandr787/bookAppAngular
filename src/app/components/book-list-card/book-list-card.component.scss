@@ -1,6 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+$tablet-media: 800px;
+$phone-media: 450px;
+
 .book-list {
     display: flex;
     padding: 8px;
-    gap: 8px;
+    // gap: 8px;
     flex-direction: column;
+}
+
+.book{
+    display: flex;
+    align-items: center;
+    padding-block: 8px;
+    padding-inline: 16px;
+    height: 72px;
+    box-sizing: border-box;
+    gap: 16px;
+    background-color: var(--md-sys-color-surface);
+
+    &__icon{
+        color: var(--md-sys-color-on-surface);
+        //padding-right: 16px;
+    }
+    
+    &__content{
+        display: flex;
+        flex-direction: column;
+
+
+        
+        &__name{
+            color: var(--md-sys-color-on-surface);
+        }
+        
+        &__author{
+            color: var(--md-sys-color-on-surface-variant);
+        }
+    }
+
+    &:hover {
+        $test: var(--md-sys-color-on-surface);
+        background-color: rgba($color: #1A1C1E, $alpha: 0.03);
+
+        .book__icon {
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .book__content__author{
+            color: var(--md-sys-color-on-surface);
+        }
+
+        //background-color: aquamarine;
+    }
 }
