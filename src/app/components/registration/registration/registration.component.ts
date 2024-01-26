@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../../services/auth/auth.service';
 import { IRegister } from '../../../interfaces/register';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cm-registration',
@@ -63,6 +64,7 @@ import { IRegister } from '../../../interfaces/register';
 export class RegistrationComponent {
 
   constructor(
+    private _router: Router,
     private _authService: AuthService
   ) { }
 
@@ -91,7 +93,9 @@ export class RegistrationComponent {
       email: this.email.value,
       password: this.password.value
     }
-    this._authService.register(registerModel);
+    this._authService.register(registerModel).subscribe(() => {
+      this._router.navigate(['/login']);
+    });
   }
 
   public logout(): void {

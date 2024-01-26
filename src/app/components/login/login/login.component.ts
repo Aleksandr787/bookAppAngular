@@ -104,7 +104,14 @@ export class LoginComponent {
       email: this.email.value,
       password: this.password.value
     }
-    this._authService.login(loginModel);
+    this._authService.login(loginModel).subscribe({
+      next: () => {
+        this._router.navigate(['/main']);
+      },
+      error: () => {
+        alert('Nope');
+      }
+    });
   }
 
   public toRegister(): void {

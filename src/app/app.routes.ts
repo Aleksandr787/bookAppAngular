@@ -12,7 +12,7 @@ export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'main'
+        redirectTo: 'main/main'
     },
     // {
     //     path: 'books',
