@@ -93,3 +93,13 @@ export class BookListCardComponent implements OnInit {
   //   })
   // }
 }
+
+export function hexToRgb(hex: string): string {
+  const matches = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+  if (!matches) {
+    throw new Error("Invalid hex color");
+  }
+
+  const [, r, g, b] = matches;
+  return `${parseInt(r, 16)}, ${parseInt(g, 16)}, ${parseInt(b, 16)}`;
+}

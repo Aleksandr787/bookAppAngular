@@ -14,6 +14,11 @@ export const routes: Routes = [
         pathMatch: 'full',
         redirectTo: 'main'
     },
+    // {
+    //     path: 'books',
+    //     component: BookListCardComponent,
+    //     canActivate: [authGuard]
+    // },
     {
         path: 'main',
         component: MainPageComponent,

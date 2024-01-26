@@ -1,12 +1,16 @@
+@use '../../../../src/scss/mixins/typography';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
+
+
 $tablet-media: 800px;
 $phone-media: 450px;
+$phone-small-media: 350px;
 
 .book-list {
     display: flex;
-    padding: 8px;
+    //padding-block: 8px;
     // gap: 8px;
     flex-direction: column;
 }
@@ -34,16 +38,23 @@ $phone-media: 450px;
         
         &__name{
             color: var(--md-sys-color-on-surface);
+            @include typography.body-large;
+            
         }
         
         &__author{
             color: var(--md-sys-color-on-surface-variant);
+            @include typography.body-medium;
+
+        
         }
     }
 
     &:hover {
         $test: var(--md-sys-color-on-surface);
-        background-color: rgba($color: #1A1C1E, $alpha: 0.03);
+        //dark on-surface #c6c6c9 light #1a1c1e
+        --test: 198, 198, 201;
+        background-color: rgba($color: var(--test), $alpha: 0.08);
 
         .book__icon {
             color: var(--md-sys-color-on-surface-variant);

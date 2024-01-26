@@ -18,35 +18,45 @@ import { IRegister } from '../../../interfaces/register';
     MatButtonModule
   ],
   template: `
-    <div class="containerRegistration">
-      <form [formGroup]="bookForm" class="bookCardForm">
-        <mat-form-field appearance="outline">
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="name">
-          <mat-error *ngIf="name.hasError('required')">Name is required</mat-error>    
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email">
-          <mat-error *ngIf="email.hasError('required')">Email is required</mat-error>    
-          <mat-error *ngIf="email.hasError('email')">Email is invalid</mat-error>    
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <mat-error *ngIf="password.hasError('required')">Password is required</mat-error>
-          <input type="password" matInput formControlName="password">    
-        </mat-form-field>
-      </form>
+    <div class="wrapper">
+      <div class="register">
+        <span class="register__title">Create Your Account</span>
+        <div class="login">
+        <span class="">Already have an account?</span>
+        <a class="login__button" (click)="logout()">Login</a>
+        </div>
+        <form [formGroup]="bookForm" class="register__form">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+            <mat-error *ngIf="name.hasError('required')">Name is required</mat-error>    
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="email.hasError('required')">Email is required</mat-error>    
+            <mat-error *ngIf="email.hasError('email')">Email is invalid</mat-error>    
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <mat-error *ngIf="password.hasError('required')">Password is required</mat-error>
+            <input type="password" matInput formControlName="password">    
+          </mat-form-field>
+        </form>
 
-      <button mat-flat-button [disabled]="bookForm.invalid" (click)="register()">Create account</button>
-      <button mat-flat-button (click)="logout()">Already have an account? Login</button>
+        <div class="register__buttons">
+          <button mat-flat-button [disabled]="bookForm.invalid" (click)="register()">Create account</button>
+          <!-- <button mat-flat-button (click)="logout()">Already have an account? Login</button>  -->
+        </div>
 
 
-      <!-- <div mat-dialog-actions>
-        <button mat-flat-button (click)="onClose()">No Thanks</button>
-        <button mat-flat-button (click)="onOk()" [disabled]="bookForm.invalid">Ok</button>
-      </div> -->
+        <!-- <div mat-dialog-actions>
+          <button mat-flat-button (click)="onClose()">No Thanks</button>
+          <button mat-flat-button (click)="onOk()" [disabled]="bookForm.invalid">Ok</button>
+        </div> -->
+      </div>
     </div>
+
   `,
   styleUrl: './registration.component.scss'
 })
