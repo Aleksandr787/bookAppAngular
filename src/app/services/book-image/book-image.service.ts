@@ -70,7 +70,13 @@ export class BookImageService{
     private _dialog: MatDialog,
     private _httpClient: HttpClient,
     private _authService: AuthService,
-  ) { }
+  ) { 
+    this.addBook({
+      name: 'sdssa', 
+      author: 'sss',
+      imageUrl: 'asssa'
+    });
+  }
 
   // ngOnInit(): void {
   //   this.getAll().subscribe(books => {
@@ -94,26 +100,37 @@ export class BookImageService{
   // }
 
   public addBook(bookAdd: IAddBookImage): Observable<any> {
-    this._currentId++;
-
-    let book: IBookImage = {
-      id: this._currentId,
-      name: bookAdd.name,
-      author: bookAdd.author,
-      imageUrl: bookAdd.imageUrl
-    }
-
-    this._books.push(book);
-
-    return of();
+    console.log("IT'S ADD BOOK!");
+    let headers = new HttpHeaders({
+      ['Content-Type']: 'application/json',
+      ['Authorization']: 'Bearer ' + this._authService.accessToken,
+    })
+    
+    return this._httpClient.post<any>(environment.apiUrlDocker + 'books', JSON.stringify(bookAdd), {
+      headers: headers});
   }
+
+  // public addBook(bookAdd: IAddBookImage): Observable<any> {
+  //   this._currentId++;
+
+  //   let book: IBookImage = {
+  //     id: this._currentId,
+  //     name: bookAdd.name,
+  //     author: bookAdd.author,
+  //     imageUrl: bookAdd.imageUrl
+  //   }
+
+  //   this._books.push(book);
+
+  //   return of();
+  // }
 
   public addBookDialog(): void {
     const dialogRef = this._dialog.open(AddBookImageComponent);
 
     dialogRef.afterClosed().subscribe((result: IAddBookImage) => {
       if (!result) return;
-      this.addBook(result);
+      this.addBook(result).subscribe();
     });
   }
 
