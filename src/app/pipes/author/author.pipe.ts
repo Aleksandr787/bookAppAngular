@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IBookCard } from '../../interfaces/book';
+import { IBookImage } from '../../interfaces/book';
 
 @Pipe({
   name: 'author',
@@ -7,8 +7,8 @@ import { IBookCard } from '../../interfaces/book';
 })
 export class AuthorPipe implements PipeTransform {
 
-  transform(book: IBookCard, ...args: unknown[]): string {
-    return book.author.firstname + " " + book.author.lastname;
+  transform(book: IBookImage, ...args: unknown[]): string {
+    return book.author;
   }
 
 }

@@ -9,7 +9,7 @@ import { MainPageComponent } from '../main-page/main-page/main-page.component';
 import { BookCardComponent } from '../book-card/book-card.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBookImageComponent } from '../dialogs/add-book-image/add-book-image.component';
-import { IAddBookCard } from '../../interfaces/book';
+import { IAddBookImage } from '../../interfaces/book';
 import { BookImageService } from '../../services/book-image/book-image.service';
 import { BookService } from '../../services/book/book.service';
 import { BookListCardComponent } from '../book-list-card/book-list-card.component';
@@ -73,7 +73,7 @@ export class NavigationComponent {
   }
 
   public addBookDialog(): void{
-    this.bookService.addBookDialog();
+    this.bookImageService.addBookDialog();
   }
   // public addBook(): void {
   //   const dialogRef = this.dialog.open(AddBookImageComponent);

@@ -15,24 +15,24 @@ export interface IEditBook {
     author: IAuthor,
 }
 
-export interface IBookCard {
+export interface IBookImage {
     id: number,
     name: string,
-    author: IAuthor,
-    image: string,
+    author: string,
+    imageUrl: string,
 }
 
-export interface IAddBookCard {
+export interface IAddBookImage {
     name: string,
-    author: IAuthor,
-    image: string,
+    author: string,
+    imageUrl: string,
 }
 
-export interface IEditBookCard {
+export interface IEditBookImage {
     id: number,
     name: string,
-    author: IAuthor,
-    image: string,
+    author: string,
+    imageUrl: string,
 }
 
 export interface IAuthor {

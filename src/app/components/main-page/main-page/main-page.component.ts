@@ -23,7 +23,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 
     <main class="main">
       <!-- <a *ngIf="!authService.isAutorized" mat-raised-button color="primary" (click)="login()"> Login  </a> -->
-      <!-- <p> Welcome {{authService.user}}</p> -->
+      <p> Welcome {{authService.user}}</p>
       <router-outlet></router-outlet>
     </main>
 

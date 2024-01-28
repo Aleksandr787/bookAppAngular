@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { IAddBookCard, IBookCard, IEditBookCard } from '../../../interfaces/book';
+import { IAddBookImage, IBookImage, IEditBookImage } from '../../../interfaces/book';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -23,23 +23,23 @@ export class AddBookImageComponent implements OnInit {
   bookForm = new FormGroup({
     name: new FormControl<string>('', Validators.required),
     authorFirstName: new FormControl<string>('', Validators.required),
-    authorLastName: new FormControl<string>('', Validators.required),
+    //authorLastName: new FormControl<string>('', Validators.required),
     imageUrl: new FormControl<string>('')
   });
-  
+
   constructor(
     public dialogRef: MatDialogRef<AddBookImageComponent>,
-    @Inject(MAT_DIALOG_DATA) private data?: IBookCard,
-  ) {    
+    @Inject(MAT_DIALOG_DATA) private data?: IBookImage,
+  ) {
   }
 
   ngOnInit(): void {
-    if(!this.data) return;
+    if (!this.data) return;
 
     this.bookForm.get('name')?.setValue(this.data.name);
-    this.bookForm.get('authorFirstName')?.setValue(this.data.author.firstname);
-    this.bookForm.get('authorLastName')?.setValue(this.data.author.lastname);
-    this.bookForm.get('imageUrl')?.setValue(this.data.image);
+    this.bookForm.get('authorFirstName')?.setValue(this.data.author);
+    //this.bookForm.get('authorLastName')?.setValue(this.data.author);
+    this.bookForm.get('imageUrl')?.setValue(this.data.imageUrl);
 
   }
 
@@ -48,39 +48,33 @@ export class AddBookImageComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public onOk() : void {
-    if(this.data){
+  public onOk(): void {
+    if (this.data) {
       this.onEdit();
     }
-    else{
+    else {
       this.onAdd();
     }
   }
 
   private onEdit(): void {
-    if(!this.data) return;
+    if (!this.data) return;
 
-    let book : IEditBookCard = {
+    let book: IEditBookImage = {
       id: this.data?.id,
       name: this.bookForm.get("name")?.value ?? '',
-      author: {
-        firstname: this.bookForm.get("authorFirstName")?.value ?? '',
-        lastname: this.bookForm.get("authorLastName")?.value ?? '',
-      },
-      image: this.bookForm.get("imageUrl")?.value ?? ''
+      author: this.bookForm.get("authorFirstName")?.value ?? '',
+      imageUrl: this.bookForm.get("imageUrl")?.value ?? ''
     }
 
     this.dialogRef.close(book);
   }
 
   private onAdd(): void {
-    let book : IAddBookCard = {
+    let book: IAddBookImage = {
       name: this.bookForm.get("name")?.value ?? '',
-      author: {
-        firstname: this.bookForm.get("authorFirstName")?.value ?? '',
-        lastname: this.bookForm.get("authorLastName")?.value ?? '',
-      },
-      image: this.bookForm.get("imageUrl")?.value ?? ''
+      author: this.bookForm.get("authorFirstName")?.value ?? '',
+      imageUrl: this.bookForm.get("imageUrl")?.value ?? ''
     }
 
     this.dialogRef.close(book);

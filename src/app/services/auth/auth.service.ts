@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment.development';
 export class AuthService {
 
   private _accessToken: string = '';
-  private _user : string = 'delete';
+  private _user : string = '';
   
   constructor(
     private router : Router,
@@ -20,7 +20,15 @@ export class AuthService {
   ) { }
 
   public get isAutorized() : boolean {
-    return this._accessToken != '';
+    return window.localStorage.getItem('accesToken') != '';
+    //return this._accessToken != '';
+  }
+
+  public get accessToken() : string{
+    let test = window.localStorage.getItem('accesToken'); 
+    if(test == null) return '';
+    return test;
+    //return this._accessToken;
   }
 
   public get user() : string {
@@ -30,15 +38,18 @@ export class AuthService {
   public login(loginModel : ILogin) : Observable<any> {
     let headers = new HttpHeaders({['Content-type']: 'application/json'});
 
-    return this.httpClient.post<any>(environment.apiUrl + 'auth/login', JSON.stringify(loginModel), {
+    return this.httpClient.post<any>(environment.apiUrlDocker + 'auth/login', JSON.stringify(loginModel), {
       headers: headers
     })
     .pipe(
       tap({
         next: result => {
           this._accessToken = result.accessToken;
+          window.localStorage.setItem('accesToken', result.accessToken);
+          this.parseUserName();
         },
         error: _ => {
+          window.localStorage.setItem('accesToken', '');
           this._accessToken = '';
           this._user = '';
         }
@@ -59,13 +70,21 @@ export class AuthService {
   public register(registerModel : IRegister) : Observable<any> {
     let headers = new HttpHeaders({['Content-type']: 'application/json'});
 
-    return this.httpClient.post(environment.apiUrl + 'auth/register', JSON.stringify(registerModel), {
+    return this.httpClient.post(environment.apiUrlDocker + 'auth/register', JSON.stringify(registerModel), {
       headers: headers
     });
   }
 
   public logout() : void {
+    this._accessToken = '';
+    window.localStorage.setItem('accesToken', '');
     this._user = '';
     this.router.navigate(['/login']);
+  }
+
+  private parseUserName(): void {
+    let authDataString = atob(this._accessToken.split('.')[1]);
+    let authData = JSON.parse(authDataString);
+    this._user = authData.name + ' <' + authData.email + '>';
   }
 }
