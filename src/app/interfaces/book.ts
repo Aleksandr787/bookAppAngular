@@ -16,7 +16,7 @@ export interface IEditBook {
 }
 
 export interface IBookImage {
-    id: number,
+    id: string,
     name: string,
     author: string,
     imageUrl: string,
@@ -29,7 +29,7 @@ export interface IAddBookImage {
 }
 
 export interface IEditBookImage {
-    id: number,
+    id: string,
     name: string,
     author: string,
     imageUrl: string,

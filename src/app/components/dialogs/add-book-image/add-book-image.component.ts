@@ -22,7 +22,7 @@ export class AddBookImageComponent implements OnInit {
 
   bookForm = new FormGroup({
     name: new FormControl<string>('', Validators.required),
-    authorFirstName: new FormControl<string>('', Validators.required),
+    authorName: new FormControl<string>('', Validators.required),
     //authorLastName: new FormControl<string>('', Validators.required),
     imageUrl: new FormControl<string>('')
   });
@@ -37,7 +37,7 @@ export class AddBookImageComponent implements OnInit {
     if (!this.data) return;
 
     this.bookForm.get('name')?.setValue(this.data.name);
-    this.bookForm.get('authorFirstName')?.setValue(this.data.author);
+    this.bookForm.get('authorName')?.setValue(this.data.author);
     //this.bookForm.get('authorLastName')?.setValue(this.data.author);
     this.bookForm.get('imageUrl')?.setValue(this.data.imageUrl);
 
@@ -46,6 +46,12 @@ export class AddBookImageComponent implements OnInit {
 
   public onClose(): void {
     this.dialogRef.close();
+  }
+
+  public onDelete(): void {
+    if (!this.data) return;
+
+    this.dialogRef.close(this.data.id);
   }
 
   public onOk(): void {
@@ -63,7 +69,7 @@ export class AddBookImageComponent implements OnInit {
     let book: IEditBookImage = {
       id: this.data?.id,
       name: this.bookForm.get("name")?.value ?? '',
-      author: this.bookForm.get("authorFirstName")?.value ?? '',
+      author: this.bookForm.get("authorName")?.value ?? '',
       imageUrl: this.bookForm.get("imageUrl")?.value ?? ''
     }
 
@@ -73,7 +79,7 @@ export class AddBookImageComponent implements OnInit {
   private onAdd(): void {
     let book: IAddBookImage = {
       name: this.bookForm.get("name")?.value ?? '',
-      author: this.bookForm.get("authorFirstName")?.value ?? '',
+      author: this.bookForm.get("authorName")?.value ?? '',
       imageUrl: this.bookForm.get("imageUrl")?.value ?? ''
     }
 

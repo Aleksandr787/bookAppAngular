@@ -75,12 +75,4 @@ export class NavigationComponent {
   public addBookDialog(): void{
     this.bookImageService.addBookDialog();
   }
-  // public addBook(): void {
-  //   const dialogRef = this.dialog.open(AddBookImageComponent);
-
-  //   dialogRef.afterClosed().subscribe((result : IAddBookCard ) => {
-  //     if(!result) return;
-  //     this.bookImageService.addBook(result);
-  //   });
-  // }
 }

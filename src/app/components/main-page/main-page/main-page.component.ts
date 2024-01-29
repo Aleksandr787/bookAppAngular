@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { NavigationComponent } from '../../navigation/navigation.component';
 import { AuthService } from '../../../services/auth/auth.service';
+import { BookCardComponent } from '../../book-card/book-card.component';
 
 @Component({
   selector: 'cm-main-page',
@@ -34,7 +35,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 export class MainPageComponent {
 
   constructor(
-    public authService : AuthService
+    public authService : AuthService,
   ) {
   }
   

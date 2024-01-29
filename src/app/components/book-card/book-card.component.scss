@@ -115,6 +115,7 @@ $breakpoint-max: 1350px;
             height: 42px;
             // overflow: auto;
             overflow-y: auto;
+            word-break: break-word;
         }
 
         &__name::-webkit-scrollbar {

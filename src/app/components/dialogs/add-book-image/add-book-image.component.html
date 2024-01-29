@@ -7,8 +7,8 @@
             <input matInput formControlName="name">    
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>FirstName</mat-label>
-            <input matInput formControlName="authorFirstName">    
+            <mat-label>AuthorName</mat-label>
+            <input matInput formControlName="authorName">    
         </mat-form-field>
         <!-- <mat-form-field appearance="outline">
             <mat-label>LastName</mat-label>
@@ -22,6 +22,7 @@
 
 </div>
 <div mat-dialog-actions>
-  <button mat-flat-button (click)="onClose()">No Thanks</button>
+  <button mat-flat-button (click)="onClose()">X</button>
+  <button mat-flat-button (click)="onDelete()">Delete</button>
   <button mat-flat-button (click)="onOk()" [disabled]="bookForm.invalid">Ok</button>
 </div>

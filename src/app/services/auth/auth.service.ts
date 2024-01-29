@@ -35,6 +35,25 @@ export class AuthService {
     return this._user;
   }
 
+  // public isTokenValid(): boolean {
+  //   try {
+  //     const decoded = JSON.parse(atob(this._accessToken));
+      
+  //     if (new Date(decoded.exp * 1000) > new Date()) {
+  //       console.log("TOKEN IS VALID")
+  //       return true;
+  //     } else {
+  //       console.log("TOKEN IS NOT VALID")
+
+  //       return false;
+  //     }
+  //   } catch (err) {
+  //     console.log("TOKEN IS ERROR")
+
+  //     return false;
+  //   }
+  // }
+
   public login(loginModel : ILogin) : Observable<any> {
     let headers = new HttpHeaders({['Content-type']: 'application/json'});
 
@@ -88,3 +107,7 @@ export class AuthService {
     this._user = authData.name + ' <' + authData.email + '>';
   }
 }
+function jwt_decode(token: string) {
+  throw new Error('Function not implemented.');
+}
+
