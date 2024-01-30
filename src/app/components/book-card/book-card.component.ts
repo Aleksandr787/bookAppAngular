@@ -7,15 +7,28 @@ import { BookImageService } from '../../services/book-image/book-image.service';
 import { AuthorPipe } from "../../pipes/author/author.pipe";
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddBookImageComponent } from '../dialogs/add-book-image/add-book-image.component';
-import { MatButtonModule } from '@angular/material/button'
+import { MatButtonModule, MatIconButton } from '@angular/material/button'
+import { MatInputModule } from '@angular/material/input';
+import { filter } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'cm-book-card',
   standalone: true,
   template: `
     <!-- <a mat-raised-button color="primary" (click)="addBook()"> Add BOOOOOOOOOOK </a> -->
+    <div class="search">
+      <button mat-icon-button (click)="filterResults(filter.value)">
+          <mat-icon class="search__icon">search</mat-icon>
+      </button>
+      <input (keyup)="filterResults(filter.value)" type="text" placeholder="Filter by name" #filter>
+      <button mat-icon-button>
+          <mat-icon class="search__icon">mic</mat-icon>
+      </button>
+    </div>
+
     <div class="container">
 
-      @for (book of books; track book) {
+      @for (book of booksFilteredList; track book) {
         <div matRipple class="card" (click)="editBook(book)">
           <img src={{book.imageUrl}} alt="" class="card__image">
           <div class="card__info">
@@ -32,23 +45,27 @@ import { MatButtonModule } from '@angular/material/button'
     CommonModule,
     MatCardModule,
     MatButtonModule,
+    MatInputModule,
     MatRippleModule,
     MatDialogModule,
+    MatIconModule,
     AuthorPipe
   ]
 })
 export class BookCardComponent {
 
   public books: IBookImage[] = [];
+  public booksFilteredList: IBookImage[] = [];
+  public filterValue: string = '';
 
   constructor(
     private bookImageService: BookImageService,
     private dialog: MatDialog,
-  ) {}
+  ) { }
 
   public ngOnInit(): void {
     this.loadBook();
-  
+
     this.bookImageService.myEventEmitter.subscribe(() => {
       this.loadBook();
     })
@@ -58,7 +75,21 @@ export class BookCardComponent {
     console.log("loadBook");
     this.bookImageService.getAll().subscribe(books => {
       this.books = books;
+      this.filterResults(this.filterValue);
     });
+  }
+
+  filterResults(text: string) {
+    this.filterValue = text;
+
+    if (!text) {
+      this.booksFilteredList = this.books;
+      return;
+    }
+
+    this.booksFilteredList = this.books.filter(
+      book => book?.name.toLowerCase().includes(text.toLowerCase())
+    );
   }
 
   // public addBookDialog(): void {
@@ -78,7 +109,7 @@ export class BookCardComponent {
     dialogRef.afterClosed().subscribe((result: IEditBookImage | string) => {
       if (!result) return;
 
-      if (typeof result === 'string'){
+      if (typeof result === 'string') {
         this.bookImageService.deleteBook(result).subscribe(() => {
           this.loadBook();
         });
@@ -88,7 +119,7 @@ export class BookCardComponent {
           this.loadBook();
         });
       }
-      
+
     });
   }
 }

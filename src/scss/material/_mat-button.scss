@@ -13,6 +13,9 @@
     --mat-filled-button-hover-state-layer-opacity: 0.08;
     --mat-filled-button-ripple-color: var(--md-sys-color-on-primary);
 
+    --mdc-filled-button-disabled-container-color: var(--md-sys-color-filled-button-disabled-container);
+    --mdc-filled-button-disabled-label-text-color: var(--md-sys-color-filled-button-disabled-label-text);
+    
     .mdc-button__label {
         @include typography.label-large;
     }

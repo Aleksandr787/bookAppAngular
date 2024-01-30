@@ -51,6 +51,8 @@
     --md-sys-color-surface-bright: var(--md-sys-color-surface-bright-light);
     --md-sys-color-surface-dim: var(--md-sys-color-surface-dim-light);
     --md-sys-color-card-hover: var(--md-sys-color-card-hover-light);
+    --md-sys-color-filled-button-disabled-container: var(--md-sys-color-filled-button-disabled-container-light);
+    --md-sys-color-filled-button-disabled-label-text: var(--md-sys-color-filled-button-disabled-label-text-light);
 }
 
 @mixin _dark-theme {
@@ -104,6 +106,8 @@
     --md-sys-color-surface-bright: var(--md-sys-color-surface-bright-dark);
     --md-sys-color-surface-dim: var(--md-sys-color-surface-dim-dark);
     --md-sys-color-card-hover: var(--md-sys-color-card-hover-dark);
+    --md-sys-color-filled-button-disabled-container: var(--md-sys-color-filled-button-disabled-container-dark);
+    --md-sys-color-filled-button-disabled-label-text: var(--md-sys-color-filled-button-disabled-label-text-dark);
 }
 
 :root {

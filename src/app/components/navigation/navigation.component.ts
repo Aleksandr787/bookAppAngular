@@ -48,7 +48,7 @@ import { BookListCardComponent } from '../book-list-card/book-list-card.componen
               <span>Add book</span>
             </div>
           </a>
-          <a mat-list-item (click)="mainPage.logout()">
+          <a mat-list-item (click)="authService.logout();">
             <div class="navigation__category__item">
               <mat-icon class="navigation__category__item__icon material-symbols-outlined">logout</mat-icon>
               <span>Logout</span>
@@ -64,7 +64,7 @@ import { BookListCardComponent } from '../book-list-card/book-list-card.componen
 })
 export class NavigationComponent {
   constructor(
-    public mainPage : MainPageComponent,
+    public authService: AuthService,
     private dialog: MatDialog,
     private bookImageService: BookImageService,
     private bookService : BookService

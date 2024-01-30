@@ -29,9 +29,9 @@ export class AppComponent {
   // }
 
   
-  public logout() : void {
-    this.authService.logout();
-  }
+  // public logout() : void {
+  //   this.authService.logout();
+  // }
 
   // public isAutorized() : boolean {
   //   return this.authService.isAutorized;

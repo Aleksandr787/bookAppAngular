@@ -41,6 +41,7 @@ $breakpoint-max: 1350px;
 
 .container {
     display: grid;
+    padding: 8px;
     grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
     //grid-template-rows: repeat(auto-fill, 500px);
 
@@ -48,6 +49,7 @@ $breakpoint-max: 1350px;
     @media (max-width: 380px) {
         grid-template-columns: 1fr 120px 120px 1fr;
     }
+
 }
 
 // .card__info__name::-webkit-scrollbar {
@@ -69,6 +71,7 @@ $breakpoint-max: 1350px;
     aspect-ratio: 1/2;
     //box-shadow: 0px 2px 5px rgba(207, 193, 193, 0.5);
     grid-row: span 1;
+
     @media (max-width: 380px) {
         grid-column: 2/-2;
     }
@@ -128,6 +131,44 @@ $breakpoint-max: 1350px;
             font-weight: 400;
         }
     }
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--md-sys-color-surface-container-high);
+    border-radius: 24px;
+    height: 56px;
+    padding-inline: 4px;
+    margin-top: 16px;
+    margin-inline: 16px;
+
+    &__icon {
+        color: var(--md-sys-color-on-surface);
+    }
+
+}
+
+input[type="text"] {
+    //border: solid 1px var(--primary-color);
+    height: min-content;
+    box-sizing: border-box;
+    background-color: unset;
+    color: var(--md-sys-color-on-surface-variant);
+    width: 100%;
+    border: none;
+    @include typography.body-large;
+
+    &::placeholder {
+        color: var(--md-sys-color-on-surface-variant);
+    }
+
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
 }
 
 // new test code }}
