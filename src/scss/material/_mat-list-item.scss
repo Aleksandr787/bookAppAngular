@@ -7,14 +7,14 @@ $phone-media: 450px;
     height: auto;
     padding-inline: 12px;
     padding-bottom: 0px;
-    
+
     --mdc-list-list-item-container-shape: 24px;
     --mdc-list-list-item-one-line-container-height: 56px;
-    
+
     --mdc-list-list-item-hover-state-layer-opacity: 0.08;
     --mdc-list-list-item-hover-state-layer-color: var(--md-sys-color-on-secondary-container);
     --mdc-list-list-item-hover-label-text-color: var(--md-sys-color-on-secondary-container);
-    
+
     --mdc-list-list-item-focus-label-text-color: var(--md-sys-color-on-secondary-container);
     --mdc-list-list-item-focus-state-layer-color: var(--md-sys-color-on-secondary-container);
     --mdc-list-list-item-focus-state-layer-opacity: 0.08;
@@ -23,7 +23,7 @@ $phone-media: 450px;
         display: flex;
         flex-direction: column;
         gap: 4px;
-        
+
         --mdc-list-list-item-container-shape: 16px;
     }
 
@@ -35,6 +35,40 @@ $phone-media: 450px;
         padding-inline: 4px;
         padding-top: 12px;
         padding-bottom: 4px;
+    }
+}
+
+.mdc-list-item.mdc-list-item.mdc-list-item {
+    --_icon_state-opacity: 0;
+
+    @media(max-width: $tablet-media) {
+        --mdc-list-list-item-container-shape: 0px;
+
+        &::before {
+            display: none;
+        }
+
+        &:hover {
+            --_icon_state-opacity: var(--mdc-list-list-item-hover-state-layer-opacity);
+        }
+
+        .navigation__category__item {
+            &:hover {
+                .navigation__category__item__icon {
+                    position: relative;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                        background-color: var(--mdc-list-list-item-hover-state-layer-color);
+                        opacity: var(--mdc-list-list-item-hover-state-layer-opacity);
+                    }
+                }
+            }
+
+
+        }
     }
 }
 
@@ -53,6 +87,14 @@ $phone-media: 450px;
 
     .mdc-list-item__primary-text.mdc-list-item__primary-text {
         color: var(--md-sys-color-on-secondary-container);
+    }
+
+    @media(max-width: $tablet-media) {
+        background-color: unset;
+
+        .navigation__category__item__icon {
+            background-color: var(--md-sys-color-secondary-container);
+        }
     }
 }
 

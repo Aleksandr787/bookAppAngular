@@ -12,13 +12,23 @@ export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'main/main'
+        redirectTo: 'main'
     },
     // {
     //     path: 'books',
     //     component: BookListCardComponent,
     //     canActivate: [authGuard]
     // },
+    {
+        path: 'main',
+        component: MainPageComponent,
+        canActivate: [authGuard],  
+    },
+    {
+        path: 'books',
+        component: BookCardComponent,
+        canActivate: [authGuard]
+    },
     {
         path: 'main',
         component: MainPageComponent,

@@ -77,13 +77,13 @@ $phone-media: 450px;
         &__item {
             display: flex;
             align-items: center;
-            //box-sizing: border-box;
             gap: 12px;
             height: 56px;
             border-radius: 24px;
 
             @media(max-width: $tablet-media) {
                 flex-direction: column;
+                border-radius: 0px;
                 gap: 0px;
             }
 
@@ -93,6 +93,7 @@ $phone-media: 450px;
 
             &__icon {
                 @media(max-width: $tablet-media) {
+                    border-radius: 24px;;
                     padding-inline: 16px;
                     padding-block: 4px;
                 }

@@ -5,6 +5,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { IAddBookImage, IBookImage, IEditBookImage } from '../../../interfaces/book';
 import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'cm-add-book-image',
@@ -12,7 +14,9 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatRippleModule,
     MatInputModule,
+    MatIconModule,
     MatButtonModule
   ],
   templateUrl: './add-book-image.component.html',
