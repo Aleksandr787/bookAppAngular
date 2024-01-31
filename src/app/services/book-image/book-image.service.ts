@@ -25,30 +25,17 @@ export class BookImageService {
   }
 
   public getAll(): Observable<IBookImage[]> {
-    let headers = new HttpHeaders({
-      ['Content-Type']: 'application/json',
-      ['Authorization']: 'Bearer ' + this._authService.accessToken,
-    })
-
-    return this._httpClient.get<IBookImage[]>(environment.apiUrlDocker + 'books', {
-      headers: headers
-    });
+    return this._httpClient.get<IBookImage[]>(environment.apiUrlDocker + 'books');
   }
 
   public addBook(bookAdd: IAddBookImage): Observable<any> {
     console.log("IT'S ADD BOOK!");
-    let headers = new HttpHeaders({
-      ['Content-Type']: 'application/json',
-      ['Authorization']: 'Bearer ' + this._authService.accessToken,
-    })
 
     if (!this.isValidImageUrl(bookAdd.imageUrl)) {
       bookAdd.imageUrl = this._defaultImageUrl;
     }
 
-    return this._httpClient.post<any>(environment.apiUrlDocker + 'books', JSON.stringify(bookAdd), {
-      headers: headers
-    });
+    return this._httpClient.post<any>(environment.apiUrlDocker + 'books', JSON.stringify(bookAdd));
   }
 
   private isValidImageUrl(url: string): boolean {
@@ -69,31 +56,25 @@ export class BookImageService {
   }
 
   public editBook(editBookModel: IEditBookImage): Observable<any> {
-
     console.log("IT'S EDIT BOOK!");
-    let headers = new HttpHeaders({
-      ['Content-Type']: 'application/json',
-      ['Authorization']: 'Bearer ' + this._authService.accessToken,
-    })
 
     if (!this.isValidImageUrl(editBookModel.imageUrl)) {
       editBookModel.imageUrl = this._defaultImageUrl;
     }
 
-    return this._httpClient.put<any>(environment.apiUrlDocker + 'books/' + editBookModel.id, JSON.stringify(editBookModel), {
-      headers: headers
-    });
+    return this._httpClient.put<any>(environment.apiUrlDocker + 'books/' + editBookModel.id, JSON.stringify(editBookModel));
   }
 
   public deleteBook(id: string): Observable<any> {
-    let headers = new HttpHeaders({
-      //['Content-Type']: 'application/json',
-      ['Authorization']: 'Bearer ' + this._authService.accessToken,
-    })
+    return this._httpClient.delete<any>(environment.apiUrlDocker + 'books/' + id);
+  }
 
-    return this._httpClient.delete<any>(environment.apiUrlDocker + 'books/' + id, {
-      headers: headers
-    });
+  public deleteAll(): Observable<any> {
+    return this._httpClient.delete<any>(environment.apiUrlDocker + 'books');
+  }
+
+  public generate(count: number): Observable<any>{
+    return this._httpClient.post<any>(environment.apiUrlDocker + 'books/generate/' + count, null);
   }
 
 }

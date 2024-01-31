@@ -24,6 +24,11 @@ export class AuthService {
     //return this._accessToken != '';
   }
 
+  public get isNotAutorized() : boolean {
+    return window.localStorage.getItem('accesToken') === '';
+    //return this._accessToken != '';
+  }
+
   public get accessToken() : string{
     let test = window.localStorage.getItem('accesToken'); 
     if(test == null) return '';
@@ -55,11 +60,9 @@ export class AuthService {
   // }
 
   public login(loginModel : ILogin) : Observable<any> {
-    let headers = new HttpHeaders({['Content-type']: 'application/json'});
+    // let headers = new HttpHeaders({['Content-type']: 'application/json'});
 
-    return this.httpClient.post<any>(environment.apiUrlDocker + 'auth/login', JSON.stringify(loginModel), {
-      headers: headers
-    })
+    return this.httpClient.post<any>(environment.apiUrlDocker + 'auth/login', JSON.stringify(loginModel))
     .pipe(
       tap({
         next: result => {
@@ -107,7 +110,8 @@ export class AuthService {
     this._user = authData.name + ' <' + authData.email + '>';
   }
 }
-function jwt_decode(token: string) {
-  throw new Error('Function not implemented.');
-}
+
+// function jwt_decode(token: string) {
+//   throw new Error('Function not implemented.');
+// }
 

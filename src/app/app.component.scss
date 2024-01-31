@@ -24,14 +24,14 @@ $phone-media: 450px;
     }
 }
 
-.main.main {
+.main {
     //background-color: rgba(black, 0.4);
     //background-color: rgba($color: #2b3137, $alpha: 0.4);
     
     //background-color: var(--md-ref-palette-neutral-variant20);
     //height: 100%;
     overflow: auto;
-    background-color: var(--md-sys-color-background);
+    background-color: var(--md-sys-color-main);
     //opacity: 0.4;
     //padding: 16px;
 

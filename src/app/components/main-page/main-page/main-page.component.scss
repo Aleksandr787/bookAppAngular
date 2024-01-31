@@ -3,7 +3,65 @@
 
 $tablet-media: 800px;
 $phone-media: 450px;
+$phone-small-media: 350px;
+.main-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 40px;
+    width: 100%;
+    gap: 12px;
+}
 
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--md-sys-color-primary);
+    font-size: 10px;
+
+    @media (min-width: $phone-small-media) {
+        font-size: 12px;
+    }
+
+    
+    @media (min-width: calc($phone-media + 50px)) {
+        font-size: 14px;
+    }
+
+    @media (min-width: calc($tablet-media + 100px)) {
+        font-size: 18px;
+    }
+}
+
+.button-wrapper-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.slider-wrapper {
+    width: 80%;
+    min-width: 280px;
+    max-width: 600px;
+    box-sizing: border-box;
+    margin-top: 32px;
+    padding-inline: 32px;
+
+    @media (max-width: $phone-media) {
+        padding-inline: 12px;
+    }
+}
+
+.mat-mdc-slider{
+    margin: unset;
+}
+.slider {
+    display: flex;
+    //width: calc(100% - 28px);
+}
 // .container {
 //     height: 100%;
 //     margin: 0px;

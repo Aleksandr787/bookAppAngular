@@ -4,6 +4,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { NavigationComponent } from "./components/navigation/navigation.component";
 import { AuthService } from './services/auth/auth.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSliderModule } from '@angular/material/slider';
 @Component({
     selector: 'cm-root',
     standalone: true,
@@ -14,7 +15,9 @@ import { MatButtonModule } from '@angular/material/button';
         RouterOutlet,
         RouterModule,
         NavigationComponent,
-        MatButtonModule
+        MatButtonModule,
+        MatSliderModule
+
     ]
 })
 export class AppComponent {

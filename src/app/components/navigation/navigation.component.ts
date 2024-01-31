@@ -33,7 +33,7 @@ import { BookListCardComponent } from '../book-list-card/book-list-card.componen
           <a mat-list-item routerLink="main" routerLink="main" routerLinkActive="mdc-list-item--activated">
             <div class="navigation__category__item">
               <mat-icon class="navigation__category__item__icon material-symbols-outlined">home</mat-icon>
-              <span>Main Page</span>
+              <span>Home</span>
             </div>
           </a>
           <a mat-list-item routerLink="books" routerLinkActive="mdc-list-item--activated">
@@ -48,7 +48,7 @@ import { BookListCardComponent } from '../book-list-card/book-list-card.componen
               <span>Add book</span>
             </div>
           </a>
-          <a mat-list-item (click)="authService.logout();">
+          <a mat-list-item (click)="logout();">
             <div class="navigation__category__item">
               <mat-icon class="navigation__category__item__icon material-symbols-outlined">logout</mat-icon>
               <span>Logout</span>
@@ -64,15 +64,16 @@ import { BookListCardComponent } from '../book-list-card/book-list-card.componen
 })
 export class NavigationComponent {
   constructor(
-    public authService: AuthService,
-    private dialog: MatDialog,
-    private bookImageService: BookImageService,
-    private bookService : BookService
-
-  ){
+    private _authService: AuthService,
+    private _bookImageService: BookImageService,
+  ) {
   }
 
-  public addBookDialog(): void{
-    this.bookImageService.addBookDialog();
+  public addBookDialog(): void {
+    this._bookImageService.addBookDialog();
+  }
+
+  public logout(): void {
+    this._authService.logout();
   }
 }

@@ -25,21 +25,40 @@
 $tablet-media: 800px;
 $phone-media: 450px;
 
-$spacing-min: 16px;
-$spacing-max: 32px;
-$offset-max: 156px;
+.container-main {
+    position: relative;
+    margin-top: 72px;
+}
 
-$breakpoint-content: 800px;
-$content-column-size: math.div($breakpoint-content - 11 * $spacing-max, 12);
+.header-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
 
-$breakpoint-tablet: 450px;
-$breakpoint-desktop: 800px;
+.header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
 
-$breakpoint-content-min: $breakpoint-content + $spacing-max * 2;
-$breakpoint-content-max: $breakpoint-content-min + $offset-max * 2;
-$breakpoint-max: 1350px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    
+    @media (min-width: $phone-media) {
+        left: 80px;
+    }
 
-.container {
+    @media (min-width: $tablet-media) {
+        left: 360px;
+    }
+    
+}
+
+.container-books {
     display: grid;
     padding: 8px;
     grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
@@ -67,7 +86,7 @@ $breakpoint-max: 1350px;
     //max-width: 260px;
     //width: 200px;
     box-sizing: border-box;
-    margin: 10px;
+    margin: 8px;
     aspect-ratio: 1/2;
     //box-shadow: 0px 2px 5px rgba(207, 193, 193, 0.5);
     grid-row: span 1;
@@ -137,12 +156,16 @@ $breakpoint-max: 1350px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
     background-color: var(--md-sys-color-surface-container-high);
     border-radius: 24px;
     height: 56px;
     padding-inline: 4px;
-    margin-top: 16px;
-    margin-inline: 16px;
+    //margin-top: 16px;
+    //margin-inline: 16px;
+    border: 2px solid var(--md-sys-color-on-surface);
+
 
     &__icon {
         color: var(--md-sys-color-on-surface);

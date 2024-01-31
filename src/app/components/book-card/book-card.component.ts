@@ -16,29 +16,44 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   template: `
     <!-- <a mat-raised-button color="primary" (click)="addBook()"> Add BOOOOOOOOOOK </a> -->
-    <div class="search">
-      <button mat-icon-button (click)="filterResults(filter.value)">
-          <mat-icon class="search__icon">search</mat-icon>
-      </button>
-      <input (keyup)="filterResults(filter.value)" type="text" placeholder="Filter by name" #filter>
-      <button mat-icon-button>
-          <mat-icon class="search__icon">mic</mat-icon>
-      </button>
-    </div>
-
-    <div class="container">
-
-      @for (book of booksFilteredList; track book) {
-        <div matRipple class="card" (click)="editBook(book)">
-          <img src={{book.imageUrl}} alt="" class="card__image">
-          <div class="card__info">
-            <span class="card__info__name">{{book.name}}</span>
-            <span class="card__info__author">{{book.author}}</span>
+    <div class="container-main">
+      <div class="header-wrapper">
+        <div class="header">
+          <div class="search">
+            <button mat-icon-button (click)="filterResults(filter.value)">
+                <mat-icon class="search__icon">search</mat-icon>
+            </button>
+            <input (keyup)="filterResults(filter.value)" type="text" placeholder="Filter by name" #filter>
+            <button mat-icon-button>
+                <mat-icon class="search__icon">mic</mat-icon>
+            </button>
           </div>
-        </div>  
-      }
+          <button mat-fab color="warn" (click)="deleteAll()" aria-label="Example icon button with a delete icon">
+              <mat-icon class="material-symbols-outlined">delete</mat-icon>
+          </button>
+          
+          <!-- <button mat-flat-button (click)="deleteAll()">Delete All</button> -->
+        </div>
+      </div>
 
+
+
+
+      <div class="container-books">
+
+        @for (book of booksFilteredList; track book) {
+          <div matRipple class="card" (click)="editBook(book)">
+            <img src={{book.imageUrl}} alt="" class="card__image">
+            <div class="card__info">
+              <span class="card__info__name">{{book.name}}</span>
+              <span class="card__info__author">{{book.author}}</span>
+            </div>
+          </div>  
+        }
+
+      </div>
     </div>
+
   `,
   styleUrl: './book-card.component.scss',
   imports: [
@@ -92,6 +107,12 @@ export class BookCardComponent {
     );
   }
 
+  // public generateBooks(): void {
+  //   this.bookImageService.generate().subscribe(() => {
+  //     this.loadBook();
+  //   });
+  // }
+
   // public addBookDialog(): void {
   //   const dialogRef = this.dialog.open(AddBookImageComponent);
 
@@ -102,6 +123,12 @@ export class BookCardComponent {
   //     });
   //   });
   // }
+
+  public deleteAll(): void {
+    this.bookImageService.deleteAll().subscribe(() => {
+      this.loadBook();
+    });
+  }
 
   public editBook(book: IEditBookImage): void {
     const dialogRef = this.dialog.open(AddBookImageComponent, { data: book });

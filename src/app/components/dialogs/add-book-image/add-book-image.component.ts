@@ -7,11 +7,13 @@ import { IAddBookImage, IBookImage, IEditBookImage } from '../../../interfaces/b
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'cm-add-book-image',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatRippleModule,
@@ -35,6 +37,11 @@ export class AddBookImageComponent implements OnInit {
     public dialogRef: MatDialogRef<AddBookImageComponent>,
     @Inject(MAT_DIALOG_DATA) private data?: IBookImage,
   ) {
+  }
+  
+  isData(): boolean {
+    if(this.data) return true;
+    return false;
   }
 
   ngOnInit(): void {

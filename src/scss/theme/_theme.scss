@@ -53,6 +53,7 @@
     --md-sys-color-card-hover: var(--md-sys-color-card-hover-light);
     --md-sys-color-filled-button-disabled-container: var(--md-sys-color-filled-button-disabled-container-light);
     --md-sys-color-filled-button-disabled-label-text: var(--md-sys-color-filled-button-disabled-label-text-light);
+    --md-sys-color-main: var(--md-sys-color-main-light);
 }
 
 @mixin _dark-theme {
@@ -108,6 +109,7 @@
     --md-sys-color-card-hover: var(--md-sys-color-card-hover-dark);
     --md-sys-color-filled-button-disabled-container: var(--md-sys-color-filled-button-disabled-container-dark);
     --md-sys-color-filled-button-disabled-label-text: var(--md-sys-color-filled-button-disabled-label-text-dark);
+    --md-sys-color-main: var(--md-sys-color-main-dark);
 }
 
 :root {

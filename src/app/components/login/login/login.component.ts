@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ILogin } from '../../../interfaces/login';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'cm-login',
@@ -16,7 +17,9 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSliderModule
+
   ],
   template: `
     <div class="wrapper">
