@@ -42,7 +42,9 @@ $phone-media: 450px;
     --_icon_state-opacity: 0;
 
     @media(max-width: $tablet-media) {
-        --mdc-list-list-item-container-shape: 0px;
+        --mdc-list-list-item-container-shape: 16px;
+
+
 
         &::before {
             display: none;

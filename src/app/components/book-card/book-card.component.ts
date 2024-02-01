@@ -20,13 +20,13 @@ import { DeleteBooksComponent } from '../dialogs/delete-books/delete-books/delet
     <div class="container-main">
       <div class="header-wrapper">
         <div class="header">
-          <div class="search">
+          <div class="header__search">
             <button mat-icon-button disabled="true">
-                <mat-icon class="search__icon">search</mat-icon>
+                <mat-icon class="header__search__icon">search</mat-icon>
             </button>
             <input (keyup)="filterResults(filter.value)" type="text" placeholder="Filter by name" #filter>
             <button mat-icon-button>
-                <mat-icon class="search__icon">mic</mat-icon>
+                <mat-icon class="header__search__icon">mic</mat-icon>
             </button>
           </div>
           <button mat-fab color="warn" (click)="deleteAll()" aria-label="Example icon button with a delete icon">
@@ -40,9 +40,10 @@ import { DeleteBooksComponent } from '../dialogs/delete-books/delete-books/delet
 
 
 
-      <div class="container-books">
+      <div class="container-cards">
 
         @for (book of booksFilteredList; track book) {
+          
           <div matRipple class="card" (click)="editBook(book)">
             <img src={{book.imageUrl}} alt="" class="card__image">
             <div class="card__info">
@@ -50,9 +51,11 @@ import { DeleteBooksComponent } from '../dialogs/delete-books/delete-books/delet
               <span class="card__info__author">{{book.author}}</span>
             </div>
           </div>  
+        
         }
 
       </div>
+
     </div>
 
   `,

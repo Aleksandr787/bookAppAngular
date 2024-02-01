@@ -26,6 +26,10 @@ export class BookImageService {
     return this._httpClient.get<IBookImage[]>(environment.apiUrlDocker + 'books');
   }
 
+  public getBook(id: string): Observable<IBookImage> {
+    return this._httpClient.get<IBookImage>(environment.apiUrlDocker + 'books/' + id);
+  }
+
   public addBook(bookAdd: IAddBookImage): Observable<any> {
     console.log("IT'S ADD BOOK!");
 
