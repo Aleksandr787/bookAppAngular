@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
-import { BookService } from '../../services/book/book.service';
+import { BookService } from '../book/book.service';
 import { IAddBook, IBook, IEditBook } from '../../interfaces/book';
 import { MatDialog } from '@angular/material/dialog';
-import { AddBookComponent } from '../dialogs/add-book/add-book/add-book.component';
+import { AddBookComponent } from '../add-book/add-book.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({

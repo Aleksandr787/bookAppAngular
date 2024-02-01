@@ -5,6 +5,7 @@ import { AddBookImageComponent } from '../../components/dialogs/add-book-image/a
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
+import { DeleteBooksComponent } from '../../components/dialogs/delete-books/delete-books/delete-books.component';
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +77,16 @@ export class BookImageService {
       });
     });
   }
+
+  public deleteBooksDialog(): void {
+    const dialogRef = this._dialog.open(DeleteBooksComponent);
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (!result) return;
+      this.deleteAll().subscribe();
+    });
+  }
+
 
   public editBook(editBookModel: IEditBookImage): Observable<any> {
     console.log("IT'S EDIT BOOK!");

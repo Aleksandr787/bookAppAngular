@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IAddBook, IBook, IEditBook } from '../../interfaces/book';
 import { Observable, of } from 'rxjs';
-import { AddBookComponent } from '../../components/dialogs/add-book/add-book/add-book.component';
+import { AddBookComponent } from '../add-book/add-book.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({

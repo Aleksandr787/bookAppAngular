@@ -11,6 +11,7 @@ import { MatButtonModule, MatIconButton } from '@angular/material/button'
 import { MatInputModule } from '@angular/material/input';
 import { filter } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
+import { DeleteBooksComponent } from '../dialogs/delete-books/delete-books/delete-books.component';
 @Component({
   selector: 'cm-book-card',
   standalone: true,
@@ -124,9 +125,21 @@ export class BookCardComponent {
   //   });
   // }
 
+  // public deleteAll(): void {
+  //   this.bookImageService.deleteAll().subscribe(() => {
+  //     this.loadBook();
+  //   });
+  // }
+
   public deleteAll(): void {
-    this.bookImageService.deleteAll().subscribe(() => {
-      this.loadBook();
+    const dialogRef = this.dialog.open(DeleteBooksComponent);
+    
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if(result) {
+        this.bookImageService.deleteAll().subscribe(()=>{
+          this.loadBook();
+        });
+      }
     });
   }
 

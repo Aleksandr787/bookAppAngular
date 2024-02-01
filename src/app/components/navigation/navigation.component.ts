@@ -3,16 +3,9 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
-import { INavigationItem } from '../../interfaces/INavigationItem';
 import { AuthService } from '../../services/auth/auth.service';
-import { MainPageComponent } from '../main-page/main-page/main-page.component';
-import { BookCardComponent } from '../book-card/book-card.component';
-import { MatDialog } from '@angular/material/dialog';
-import { AddBookImageComponent } from '../dialogs/add-book-image/add-book-image.component';
-import { IAddBookImage } from '../../interfaces/book';
 import { BookImageService } from '../../services/book-image/book-image.service';
-import { BookService } from '../../services/book/book.service';
-import { BookListCardComponent } from '../book-list-card/book-list-card.component';
+
 
 @Component({
   selector: 'cm-navigation',
