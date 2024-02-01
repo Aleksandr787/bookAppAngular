@@ -21,7 +21,7 @@ import { DeleteBooksComponent } from '../dialogs/delete-books/delete-books/delet
       <div class="header-wrapper">
         <div class="header">
           <div class="search">
-            <button mat-icon-button (click)="filterResults(filter.value)">
+            <button mat-icon-button disabled="true">
                 <mat-icon class="search__icon">search</mat-icon>
             </button>
             <input (keyup)="filterResults(filter.value)" type="text" placeholder="Filter by name" #filter>

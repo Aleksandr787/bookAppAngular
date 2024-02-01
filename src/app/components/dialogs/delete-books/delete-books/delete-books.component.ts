@@ -20,17 +20,21 @@ import { MatInputModule } from '@angular/material/input';
     <h1 mat-dialog-title class="headline">
       Delete all books?
     </h1>
+    <div mat-dialog-content></div>
     
     <div mat-dialog-actions class="actions">
+      <button mat-flat-button (click)="onClose()" >No</button>
+      <button mat-flat-button (click)="onDelete()" >Yes</button>
+<!-- 
       <p class="actions__text-button" (click)="onClose()" >Cansel</p>
-      <p class="actions__text-button" (click)="onDelete()">Delete</p>
+      <p class="actions__text-button" (click)="onDelete()">Delete</p> -->
     </div>
 
-    <div class="close">
+    <!-- <div class="close">
       <button mat-icon-button (click)="onClose()">
         <mat-icon>arrow_back</mat-icon>
       </button>
-    </div>
+    </div> -->
   `,
   styleUrl: './delete-books.component.scss'
 })
@@ -51,5 +55,4 @@ export class DeleteBooksComponent {
     this.data = true;
     this.dialogRef.close(this.data);
   }
-
 }

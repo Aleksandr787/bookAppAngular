@@ -20,18 +20,19 @@ $phone-media: 450px;
 
 .actions {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+    gap: 16px;
 
-    &__text-button {
-        color: var(--md-sys-color-primary);
-        cursor: pointer; 
-        @include typography.label-large;
-    }
+    // &__text-button {
+    //     color: var(--md-sys-color-primary);
+    //     cursor: pointer; 
+    //     @include typography.label-large;
+    // }
 
-    &__delete-button {
-        color: #7b2323;
-        @include typography.label-large;
-    }
+    // &__delete-button {
+    //     color: #7b2323;
+    //     @include typography.label-large;
+    // }
 }
 
 .close{

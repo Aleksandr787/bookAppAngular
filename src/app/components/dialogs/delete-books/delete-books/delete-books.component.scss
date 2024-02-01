@@ -14,13 +14,17 @@ $phone-media: 450px;
 .headline {
     display: flex;
     justify-content: center;
+    margin: 0px;
+    //padding-top: 20px;
     @include typography.headline-small;
     color: var(--md-sys-color-on-surface);
 }
 
 .actions {
     display: flex;
-    justify-content: space-around;
+    justify-content: right;
+    gap: 16px;
+    margin-top: 32px;
 
     &__text-button {
         color: var(--md-sys-color-primary);
