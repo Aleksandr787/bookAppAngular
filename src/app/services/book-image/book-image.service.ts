@@ -1,12 +1,10 @@
-import { EventEmitter, Injectable, OnInit } from '@angular/core';
-import { IAddBookImage, IBook, IBookImage, IEditBookImage } from '../../interfaces/book';
-import { Observable, of, tap } from 'rxjs';
+import { EventEmitter, Injectable } from '@angular/core';
+import { IAddBookImage, IBookImage, IEditBookImage } from '../../interfaces/book';
+import { Observable, switchMap, tap } from 'rxjs';
 import { AddBookImageComponent } from '../../components/dialogs/add-book-image/add-book-image.component';
 import { MatDialog } from '@angular/material/dialog';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { AuthService } from '../auth/auth.service';
-import { BookCardComponent } from '../../components/book-card/book-card.component';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +18,6 @@ export class BookImageService {
   constructor(
     private _dialog: MatDialog,
     private _httpClient: HttpClient,
-    private _authService: AuthService,
   ) {
   }
 
@@ -31,17 +28,42 @@ export class BookImageService {
   public addBook(bookAdd: IAddBookImage): Observable<any> {
     console.log("IT'S ADD BOOK!");
 
-    if (!this.isValidImageUrl(bookAdd.imageUrl)) {
-      bookAdd.imageUrl = this._defaultImageUrl;
-    }
-
-    return this._httpClient.post<any>(environment.apiUrlDocker + 'books', JSON.stringify(bookAdd));
+    return this.isNotValidImageUrl(bookAdd.imageUrl).pipe(
+      tap((result) => {
+        if (result) {
+          console.log('REALY AErroor');
+          bookAdd.imageUrl = this._defaultImageUrl;
+        }
+      }),
+      switchMap(() => this._httpClient.post<any>(environment.apiUrlDocker + 'books', JSON.stringify(bookAdd)))
+    );
   }
 
-  private isValidImageUrl(url: string): boolean {
+  // private isValidImageUrl(url: string): boolean {
+  //   const img = new Image();
+  //   img.src = url;
+  //   return img.complete && img.naturalWidth !== 0;
+  // }
+
+  private isNotValidImageUrl(url: string): Observable<boolean> {
     const img = new Image();
     img.src = url;
-    return img.complete && img.naturalWidth !== 0;
+
+    return new Observable<boolean>((observer) => {
+      img.onload = function () {
+        observer.next(false);
+        observer.complete();
+        console.log('IMAGE Done');
+      };
+
+      img.onerror = function () {
+        //img.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrBsj1Q8Qg0z9q7L8lau6_sma9XgEE5C_RZQ&usqp=CAU';
+        console.log('IMAGE ErroR!!');
+        observer.next(true);
+        observer.complete();
+      };
+
+    })
   }
 
   public addBookDialog(): void {
@@ -58,11 +80,15 @@ export class BookImageService {
   public editBook(editBookModel: IEditBookImage): Observable<any> {
     console.log("IT'S EDIT BOOK!");
 
-    if (!this.isValidImageUrl(editBookModel.imageUrl)) {
-      editBookModel.imageUrl = this._defaultImageUrl;
-    }
-
-    return this._httpClient.put<any>(environment.apiUrlDocker + 'books/' + editBookModel.id, JSON.stringify(editBookModel));
+    return this.isNotValidImageUrl(editBookModel.imageUrl).pipe(
+      tap((result) => {
+        if (result) {
+          console.log('REALY AErroor');
+          editBookModel.imageUrl = this._defaultImageUrl;
+        }
+      }),
+      switchMap(() => this._httpClient.put<any>(environment.apiUrlDocker + 'books/' + editBookModel.id, JSON.stringify(editBookModel)))
+    );
   }
 
   public deleteBook(id: string): Observable<any> {
@@ -76,5 +102,4 @@ export class BookImageService {
   public generate(count: number): Observable<any>{
     return this._httpClient.post<any>(environment.apiUrlDocker + 'books/generate/' + count, null);
   }
-
 }

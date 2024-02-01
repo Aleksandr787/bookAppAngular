@@ -37,7 +37,9 @@ export class AuthService {
   }
 
   public get user() : string {
-    return this._user;
+    let test = window.localStorage.getItem('userName'); 
+    if(test == null) return '';
+    return test;
   }
 
   // public isTokenValid(): boolean {
@@ -72,6 +74,8 @@ export class AuthService {
         },
         error: _ => {
           window.localStorage.setItem('accesToken', '');
+          window.localStorage.setItem('userName', '');
+
           this._accessToken = '';
           this._user = '';
         }
@@ -98,8 +102,9 @@ export class AuthService {
   }
 
   public logout() : void {
-    this._accessToken = '';
     window.localStorage.setItem('accesToken', '');
+    window.localStorage.setItem('userName', '');
+    this._accessToken = '';
     this._user = '';
     this.router.navigate(['/login']);
   }
@@ -107,7 +112,10 @@ export class AuthService {
   private parseUserName(): void {
     let authDataString = atob(this._accessToken.split('.')[1]);
     let authData = JSON.parse(authDataString);
-    this._user = authData.name + ' <' + authData.email + '>';
+    let userName = authData.name; 
+    // this._user = authData.name + ' <' + authData.email + '>';
+    this._user = userName;
+    window.localStorage.setItem('userName', userName);
   }
 }
 
