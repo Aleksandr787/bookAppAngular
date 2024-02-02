@@ -28,7 +28,6 @@ import { DeleteBooksComponent } from '../../dialogs/delete-books/delete-books/de
     RouterModule
   ],
   template: `
-    <div class="container">
       <div class="card">
         <div class="card__left">
           <img class="card__left__image" src={{book.imageUrl}} alt="">
@@ -39,20 +38,19 @@ import { DeleteBooksComponent } from '../../dialogs/delete-books/delete-books/de
         </div>
         <div class="card__right">
           <div class="card__right__info">
-            <div class="card__right__info__name">{{book.name}}</div>
-            <div class="card__right__info__author">{{book.author}}</div>
-            <div class="card__right__info__description">
+            <span class="card__right__info__name">{{book.name}}</span>
+            <span class="card__right__info__author">{{book.author}}</span>
+            <span class="card__right__info__description">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. 
               Corporis delectus nesciunt voluptatum neque doloremque! 
               Ea voluptatum quisquam obcaecati, repudiandae dolore quae 
               impedit ipsam quam voluptate itaque tempora ut ipsum architecto.
-            </div>
+            </span>
 
           </div>
         </div>
       </div>
 
-    </div>
   `,
   styleUrl: './book-info.component.scss'
 })
