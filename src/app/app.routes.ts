@@ -24,7 +24,7 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
-        path: 'details/:id',
+        path: 'books/:id',
         component: BookInfoComponent,
         canActivate: [authGuard]
     },

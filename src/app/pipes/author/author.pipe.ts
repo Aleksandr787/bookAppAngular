@@ -8,7 +8,15 @@ import { IBookImage } from '../../interfaces/book';
 export class AuthorPipe implements PipeTransform {
 
   transform(book: IBookImage, ...args: unknown[]): string {
-    return book.author;
-  }
+    if (book.author.includes('.')) {
+      return book.author;
+    }
 
+    if (!book.author.includes(' ')) {
+      return book.author;
+    }
+
+    let test = book.author.split(' ');
+    return `${test[1]} ${test[0][0]}.`;
+  }
 }

@@ -20,7 +20,7 @@ import { BookImageService } from '../../services/book-image/book-image.service';
     <div class="navigation">
 
       <div class="navigation__category">
-        <span class="navigation__category__name">Books</span>
+        <!-- <span class="navigation__category__name">Books</span> -->
         
         <mat-nav-list>
           <a mat-list-item routerLink="main" routerLink="main" routerLinkActive="mdc-list-item--activated">

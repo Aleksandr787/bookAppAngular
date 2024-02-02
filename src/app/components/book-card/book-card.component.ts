@@ -28,7 +28,7 @@ import { Router, RouterModule } from '@angular/router';
                 <mat-icon class="header__search__icon">mic</mat-icon>
             </button>
           </div>
-          <button mat-fab color="warn" (click)="deleteAll()" aria-label="Example icon button with a delete icon">
+          <button mat-fab color="warn" class="header__button" (click)="deleteAll()" aria-label="Example icon button with a delete icon">
               <mat-icon class="material-symbols-outlined">delete</mat-icon>
           </button>
         </div>
@@ -41,11 +41,11 @@ import { Router, RouterModule } from '@angular/router';
 
         @for (book of booksFilteredList; track book) {
           
-          <div matRipple class="card" [routerLink]="['/details', book.id]">
+          <div matRipple class="card" [routerLink]="['/books', book.id]">
             <img src={{book.imageUrl}} alt="" class="card__image">
             <div class="card__info">
               <span class="card__info__name">{{book.name}}</span>
-              <span class="card__info__author">{{book.author}}</span>
+              <span class="card__info__author">{{book | author}}</span>
             </div>
           </div>  
         

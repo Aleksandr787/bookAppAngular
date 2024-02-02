@@ -24,6 +24,10 @@ $phone-media: 450px;
     gap: 16px;
     padding: 16px;
 
+    @media (max-width: $phone-media) {
+        padding: 8px;
+    }
+
     position: fixed;
     top: 0;
     right: 0;
@@ -53,10 +57,19 @@ $phone-media: 450px;
         border: 2px solid var(--md-sys-color-on-surface);
 
 
+
         &__icon {
             color: var(--md-sys-color-on-surface);
         }
 
+    }
+
+    &__button {
+        @media (max-width: $phone-media) {
+            position: fixed;
+            right: 8px;
+            bottom: 88px;
+        }
     }
 
     input[type="text"] {
@@ -105,16 +118,9 @@ $phone-media: 450px;
     //max-width: 300px;
     //max-height: 450px;
     border-radius: 16px;
-    background-color: aquamarine;
     background: var(--md-sys-color-surface-container-highest);
 
     &:hover {
-        // background-color: var(--md-sys-color-card-hover);
-        // &:before{
-        //     background-color: var(--md-sys-color-on-surface);
-        //     opacity: 0.08;;
-
-        // }
         position: relative;
 
         &::before {
@@ -150,9 +156,9 @@ $phone-media: 450px;
 
     &__image {
         aspect-ratio: 3/4;
-        //width: 100%;
-        //height: 100%;
-        object-fit: fill;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         border-radius: 16px;
     }
 

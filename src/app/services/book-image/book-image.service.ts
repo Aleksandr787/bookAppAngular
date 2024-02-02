@@ -55,8 +55,22 @@ export class BookImageService {
     img.src = url;
 
     return new Observable<boolean>((observer) => {
+      
+      // old code
+      // img.onload = function () {
+      //   observer.next(false);
+      //   observer.complete();
+      //   console.log('IMAGE Done');
+      // };
+
       img.onload = function () {
-        observer.next(false);
+        if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+          // Image loaded successfully but has no dimensions (probably a 404 error)
+          observer.next(true);
+        } else {
+          // Image loaded successfully
+          observer.next(false);
+        }
         observer.complete();
         console.log('IMAGE Done');
       };
@@ -114,7 +128,7 @@ export class BookImageService {
     return this._httpClient.delete<any>(environment.apiUrlDocker + 'books');
   }
 
-  public generate(count: number): Observable<any>{
+  public generate(count: number): Observable<any> {
     return this._httpClient.post<any>(environment.apiUrlDocker + 'books/generate/' + count, null);
   }
 }

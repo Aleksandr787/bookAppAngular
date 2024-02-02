@@ -27,7 +27,7 @@
 
 <div mat-dialog-actions class="actions">
     <!-- <button mat-flat-button *ngIf="isData()" (click)="onDelete()" [class.disabled]="bookForm.invalid">Delete</button> -->
-    <button mat-flat-button (click)="onOk()" [class.disabled]="bookForm.invalid">Save</button>
+    <button mat-flat-button (click)="onOk()" [disabled]="bookForm.invalid">Save</button>
 </div>
 
 <div class="close">

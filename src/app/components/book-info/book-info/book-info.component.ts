@@ -28,15 +28,33 @@ import { DeleteBooksComponent } from '../../dialogs/delete-books/delete-books/de
     RouterModule
   ],
   template: `
+    <div class="card-wrapper">
+      
+      <div class="close">
+        <button mat-icon-button (click)="onClose()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+      
       <div class="card">
         <div class="card__left">
-          <img class="card__left__image" src={{book.imageUrl}} alt="">
-          <div class="card__left__buttons">
-            <button mat-flat-button (click)="onDelete()">Delete</button>
-            <button mat-flat-button (click)="editBook(book)">Edit</button>
+          <div class="image-border">
+            <img class="card__left__image" src={{book.imageUrl}} alt="">
           </div>
+          <div class="card__left__buttons">
+            <!-- <button mat-flat-button (click)="onDelete()">Delete</button>
+            <button mat-flat-button (click)="editBook(book)">Edit</button> -->
+            <button mat-fab color="warn" (click)="onDelete()">
+              <mat-icon class="material-symbols-outlined">delete</mat-icon>
+            </button>
+
+            <button mat-fab color="primary" (click)="editBook(book)">
+              <mat-icon class="material-symbols-outlined">edit</mat-icon>
+            </button>
         </div>
-        <div class="card__right">
+      </div>
+    
+      <div class="card__right">
           <div class="card__right__info">
             <span class="card__right__info__name">{{book.name}}</span>
             <span class="card__right__info__author">{{book.author}}</span>
@@ -50,6 +68,8 @@ import { DeleteBooksComponent } from '../../dialogs/delete-books/delete-books/de
           </div>
         </div>
       </div>
+    </div>
+
 
   `,
   styleUrl: './book-info.component.scss'
@@ -91,6 +111,10 @@ export class BookInfoComponent {
         });
       }
     });
+  }
+
+  public onClose(): void {
+    this._router.navigate(['/books']);
   }
 
   public editBook(book: IEditBookImage | undefined): void {
