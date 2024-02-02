@@ -1,22 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
-import { IAddBookImage, IBookImage, IEditBookImage } from '../../interfaces/book';
+import { IBookImage, IEditBookImage } from '../../interfaces/book';
 import { BookImageService } from '../../services/book-image/book-image.service';
 import { AuthorPipe } from "../../pipes/author/author.pipe";
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddBookImageComponent } from '../dialogs/add-book-image/add-book-image.component';
-import { MatButtonModule, MatIconButton } from '@angular/material/button'
+import { MatButtonModule} from '@angular/material/button'
 import { MatInputModule } from '@angular/material/input';
-import { filter } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { DeleteBooksComponent } from '../dialogs/delete-books/delete-books/delete-books.component';
+import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'cm-book-card',
   standalone: true,
   template: `
-    <!-- <a mat-raised-button color="primary" (click)="addBook()"> Add BOOOOOOOOOOK </a> -->
     <div class="container-main">
       <div class="header-wrapper">
         <div class="header">
@@ -32,8 +31,6 @@ import { DeleteBooksComponent } from '../dialogs/delete-books/delete-books/delet
           <button mat-fab color="warn" (click)="deleteAll()" aria-label="Example icon button with a delete icon">
               <mat-icon class="material-symbols-outlined">delete</mat-icon>
           </button>
-          
-          <!-- <button mat-flat-button (click)="deleteAll()">Delete All</button> -->
         </div>
       </div>
 
@@ -44,7 +41,7 @@ import { DeleteBooksComponent } from '../dialogs/delete-books/delete-books/delet
 
         @for (book of booksFilteredList; track book) {
           
-          <div matRipple class="card" (click)="editBook(book)">
+          <div matRipple class="card" [routerLink]="['/details', book.id]">
             <img src={{book.imageUrl}} alt="" class="card__image">
             <div class="card__info">
               <span class="card__info__name">{{book.name}}</span>
@@ -68,7 +65,8 @@ import { DeleteBooksComponent } from '../dialogs/delete-books/delete-books/delet
     MatRippleModule,
     MatDialogModule,
     MatIconModule,
-    AuthorPipe
+    AuthorPipe,
+    RouterModule
   ]
 })
 export class BookCardComponent {
@@ -78,21 +76,22 @@ export class BookCardComponent {
   public filterValue: string = '';
 
   constructor(
-    private bookImageService: BookImageService,
-    private dialog: MatDialog,
+    private _bookImageService: BookImageService,
+    private _dialog: MatDialog,
+    private _router: Router
   ) { }
 
   public ngOnInit(): void {
     this.loadBook();
 
-    this.bookImageService.myEventEmitter.subscribe(() => {
+    this._bookImageService.myEventEmitter.subscribe(() => {
       this.loadBook();
     })
   }
 
   public loadBook(): void {
     console.log("loadBook");
-    this.bookImageService.getAll().subscribe(books => {
+    this._bookImageService.getAll().subscribe(books => {
       this.books = books;
       this.filterResults(this.filterValue);
     });
@@ -111,7 +110,39 @@ export class BookCardComponent {
     );
   }
 
-  // public generateBooks(): void {
+  public deleteAll(): void {
+    const dialogRef = this._dialog.open(DeleteBooksComponent, {data: {all: true}});
+    
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if(result) {
+        this._bookImageService.deleteAll().subscribe(()=>{
+          this.loadBook();
+        });
+      }
+    });
+  }
+
+  // public editBook(book: IEditBookImage): void {
+  //   const dialogRef = this._dialog.open(AddBookImageComponent, { data: book });
+
+  //   dialogRef.afterClosed().subscribe((result: IEditBookImage | string) => {
+  //     if (!result) return;
+
+  //     if (typeof result === 'string') {
+  //       this._bookImageService.deleteBook(result).subscribe(() => {
+  //         this.loadBook();
+  //       });
+  //     }
+  //     else {
+  //       this._bookImageService.editBook(result).subscribe(() => {
+  //         this.loadBook();
+  //       });
+  //     }
+
+  //   });
+  // }
+
+    // public generateBooks(): void {
   //   this.bookImageService.generate().subscribe(() => {
   //     this.loadBook();
   //   });
@@ -133,36 +164,4 @@ export class BookCardComponent {
   //     this.loadBook();
   //   });
   // }
-
-  public deleteAll(): void {
-    const dialogRef = this.dialog.open(DeleteBooksComponent);
-    
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if(result) {
-        this.bookImageService.deleteAll().subscribe(()=>{
-          this.loadBook();
-        });
-      }
-    });
-  }
-
-  public editBook(book: IEditBookImage): void {
-    const dialogRef = this.dialog.open(AddBookImageComponent, { data: book });
-
-    dialogRef.afterClosed().subscribe((result: IEditBookImage | string) => {
-      if (!result) return;
-
-      if (typeof result === 'string') {
-        this.bookImageService.deleteBook(result).subscribe(() => {
-          this.loadBook();
-        });
-      }
-      else {
-        this.bookImageService.editBook(result).subscribe(() => {
-          this.loadBook();
-        });
-      }
-
-    });
-  }
 }

@@ -17,9 +17,13 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule
   ],
   template: `
-    <h1 mat-dialog-title class="headline">
+    <h1 *ngIf="data.all" mat-dialog-title class="headline">
       Delete all books?
     </h1>
+    <h1 *ngIf="!data.all" mat-dialog-title class="headline">
+      Delete book?
+    </h1>
+
     <div mat-dialog-content></div>
     
     <div mat-dialog-actions class="actions">
@@ -42,17 +46,15 @@ export class DeleteBooksComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DeleteBooksComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: boolean,
+    @Inject(MAT_DIALOG_DATA) public data: {all: boolean},
   ) {
   }
 
   public onClose(): void {
-    this.data = false;
-    this.dialogRef.close(this.data);
+    this.dialogRef.close();
   }
 
   public onDelete(): void {
-    this.data = true;
     this.dialogRef.close(this.data);
   }
 }
