@@ -13,8 +13,10 @@ import { DeleteBooksComponent } from '../../components/dialogs/delete-books/dele
 export class BookImageService {
 
   public myEventEmitter: EventEmitter<any> = new EventEmitter<any>();
+  
+  private _defaultImageUrl: string = 'https://i.ebayimg.com/thumbs/images/g/BdQAAOSwvZNhtArq/s-l1600.jpg';
 
-  private _defaultImageUrl: string = 'https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?size=338&ext=jpg&ga=GA1.1.1448711260.1706486400&semt=sph;';
+  //rivate _defaultImageUrl: string = 'https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?size=338&ext=jpg&ga=GA1.1.1448711260.1706486400&semt=sph;';
 
   constructor(
     private _dialog: MatDialog,

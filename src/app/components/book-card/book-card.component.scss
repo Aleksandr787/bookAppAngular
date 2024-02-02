@@ -54,7 +54,7 @@ $phone-media: 450px;
         padding-inline: 4px;
         //margin-top: 16px;
         //margin-inline: 16px;
-        border: 2px solid var(--md-sys-color-on-surface);
+        //border: 2px solid var(--md-sys-color-on-surface);
 
 
 
@@ -143,13 +143,6 @@ $phone-media: 450px;
         }
     }
 
-    // &:hover::before{
-    //     content: '';
-    //     background-color: red;
-    //     opacity: 0.28;;
-
-    // }
-
     @media (max-width: 380px) {
         grid-column: 2/-2;
     }
@@ -197,156 +190,3 @@ $phone-media: 450px;
         }
     }
 }
-
-
-// .container-cards {
-//     display: grid;
-//     padding: 8px;
-//     grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
-//     //grid-template-rows: repeat(auto-fill, 500px);
-
-//     @media (max-width: 380px) {
-//         grid-template-columns: 1fr 120px 120px 1fr;
-//     }
-
-// }
-
-// .card {
-//     display: grid;
-//     //grid-template-rows: repeat(4, 1fr);
-//     //grid-template-rows: auto;
-//     border-radius: 16px;
-//     background: var(--md-sys-color-surface-container-high);
-//     min-height: 300px;
-//     // min-width: 150px;
-//     //max-width: 260px;
-//     //width: 200px;
-//     box-sizing: border-box;
-//     margin: 8px;
-//     aspect-ratio: 1/2;
-//     //box-shadow: 0px 2px 5px rgba(207, 193, 193, 0.5);
-//     grid-row: span 1;
-
-//     @media (max-width: 380px) {
-//         grid-column: 2/-2;
-//     }
-
-
-
-//     &:hover {
-//         background-color: var(--md-sys-color-card-hover);
-//         cursor: pointer;
-
-//         .card__info__name {
-//             color: var(--md-sys-color-on-secondary-container);
-//             word-break: break-word;
-//         }
-
-//         .card__info__author {
-//             color: var(--md-sys-color-on-secondary-container);
-//         }
-//     }
-
-//     &__image {
-//         display: grid;
-//         //grid-row: 1/4;
-
-//         width: 100%;
-//         height: 100%;
-//         border-radius: 16px;
-//         // Можно поигрься с этими параметрами
-//         object-fit: cover;
-//         aspect-ratio: 2/3;
-//     }
-
-//     &__info {
-//         display: flex;
-//         flex-direction: column;
-//         box-sizing: border-box;
-//         padding: 16px;
-//         gap: 4px;
-
-//         &__name {
-//             color: var(--md-sys-color-on-surface);
-//             font-size: 16px;
-//             font-weight: 400;
-//             height: 42px;
-//             // overflow: auto;
-//             overflow-y: auto;
-//             word-break: break-word;
-//         }
-
-//         &__name::-webkit-scrollbar {
-//             display: none;
-//         }
-
-//         &__author {
-//             color: var(--md-sys-color-on-surface-variant);
-//             font-size: 14px;
-//             font-weight: 400;
-//         }
-//     }
-// }
-
-
-
-
-
-// new test code }}
-
-// .card {
-//     display: grid;
-//     grid-template-rows: auto;
-//     border-radius: 16px;
-//     background: var(--md-sys-color-surface-container-high);
-//     height: auto;
-//     width: 200px;
-//     box-sizing: border-box;
-//     margin: 10px;
-//     //box-shadow: 0px 2px 5px rgba(207, 193, 193, 0.5);
-
-//     &:hover {
-//         background-color: var(--md-sys-color-card-hover);
-//         cursor: pointer;
-
-//         .card__info__name {
-//             color: var(--md-sys-color-on-secondary-container);
-//         }
-
-//         .card__info__author {
-//             color: var(--md-sys-color-on-secondary-container);
-//         }
-//     }
-
-//     &__image {
-//         display: block;
-//         width: 100%;
-//         /* Обновлено */
-//         height: 300px;
-//         /* Добавлено */
-//         border-radius: 16px;
-//         object-fit: cover;
-//         /* Обновлено */
-//         box-sizing: border-box;
-//     }
-
-//     &__info {
-//         display: flex;
-//         flex-direction: column;
-//         box-sizing: border-box;
-//         padding: 16px;
-//         gap: 4px;
-
-//         &__name {
-//             color: var(--md-sys-color-on-surface);
-//             font-size: 16px;
-//             font-weight: 400;
-//         }
-
-//         &__author {
-//             color: var(--md-sys-color-on-surface-variant);
-//             font-size: 14px;
-//             font-weight: 400;
-//         }
-//     }
-// }
