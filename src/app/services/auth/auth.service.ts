@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ILogin } from '../../interfaces/login';
 import { IRegister } from '../../interfaces/register';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
@@ -11,29 +11,23 @@ import { environment } from '../../../environments/environment.development';
 })
 export class AuthService {
 
-  private _accessToken: string = '';
-  private _user : string = '';
-  
   constructor(
-    private router : Router,
-    private httpClient: HttpClient,
+    private _router : Router,
+    private _httpClient: HttpClient,
   ) { }
 
   public get isAutorized() : boolean {
     return window.localStorage.getItem('accesToken') != '';
-    //return this._accessToken != '';
   }
 
   public get isNotAutorized() : boolean {
     return window.localStorage.getItem('accesToken') === '';
-    //return this._accessToken != '';
   }
 
   public get accessToken() : string{
     let test = window.localStorage.getItem('accesToken'); 
     if(test == null) return '';
     return test;
-    //return this._accessToken;
   }
 
   public get user() : string {
@@ -42,84 +36,35 @@ export class AuthService {
     return test;
   }
 
-  // public isTokenValid(): boolean {
-  //   try {
-  //     const decoded = JSON.parse(atob(this._accessToken));
-      
-  //     if (new Date(decoded.exp * 1000) > new Date()) {
-  //       console.log("TOKEN IS VALID")
-  //       return true;
-  //     } else {
-  //       console.log("TOKEN IS NOT VALID")
-
-  //       return false;
-  //     }
-  //   } catch (err) {
-  //     console.log("TOKEN IS ERROR")
-
-  //     return false;
-  //   }
-  // }
-
   public login(loginModel : ILogin) : Observable<any> {
-    // let headers = new HttpHeaders({['Content-type']: 'application/json'});
-
-    return this.httpClient.post<any>(environment.apiUrlDocker + 'auth/login', JSON.stringify(loginModel))
+    return this._httpClient.post<any>(environment.apiUrlDocker + 'auth/login', JSON.stringify(loginModel))
     .pipe(
       tap({
         next: result => {
-          this._accessToken = result.accessToken;
           window.localStorage.setItem('accesToken', result.accessToken);
           this.parseUserName();
         },
         error: _ => {
           window.localStorage.setItem('accesToken', '');
           window.localStorage.setItem('userName', '');
-
-          this._accessToken = '';
-          this._user = '';
         }
       })
     );
   }
 
-  // public login(loginModel : ILogin) : Observable<any> {
-  //   let headers = new HttpHeaders({
-  //     ['accept']: 'application/json',
-  //     ['Content-type']: 'application/json'});
-
-  //   return this.httpClient.post(environment.apiUrl + 'auth/register', JSON.stringify(loginModel), {
-  //     headers: headers
-  //   });
-  // }
-
   public register(registerModel : IRegister) : Observable<any> {
-    let headers = new HttpHeaders({['Content-type']: 'application/json'});
-
-    return this.httpClient.post(environment.apiUrlDocker + 'auth/register', JSON.stringify(registerModel), {
-      headers: headers
-    });
+    return this._httpClient.post(environment.apiUrlDocker + 'auth/register', JSON.stringify(registerModel));
   }
 
   public logout() : void {
     window.localStorage.setItem('accesToken', '');
     window.localStorage.setItem('userName', '');
-    this._accessToken = '';
-    this._user = '';
-    this.router.navigate(['/login']);
+    this._router.navigate(['/login']);
   }
 
   private parseUserName(): void {
-    let authDataString = atob(this._accessToken.split('.')[1]);
-    let authData = JSON.parse(authDataString);
-    let userName = authData.name; 
-    // this._user = authData.name + ' <' + authData.email + '>';
-    this._user = userName;
+    let authDataString = atob(this.accessToken.split('.')[1]);
+    let userName = JSON.parse(authDataString).name; 
     window.localStorage.setItem('userName', userName);
   }
 }
-
-// function jwt_decode(token: string) {
-//   throw new Error('Function not implemented.');
-// }
-

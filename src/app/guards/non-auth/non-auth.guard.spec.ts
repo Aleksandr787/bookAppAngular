@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
-
 import { nonAuthGuard } from './non-auth.guard';
 
 describe('nonAuthGuard', () => {

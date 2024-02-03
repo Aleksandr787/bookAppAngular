@@ -16,9 +16,8 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error.status === 401) {
           window.localStorage.setItem('accesToken', '');
           window.localStorage.setItem('userName', '');
-
           this._router.navigate(['/login']);
-          console.log('ОШИБКА 401!!!!');
+          console.log('Eror 401. Auth interseptor -> navigate /login');
         }
         return throwError(error);
       })
