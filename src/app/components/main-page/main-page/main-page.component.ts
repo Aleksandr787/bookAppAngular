@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
-import { BookCardComponent } from '../../book-card/book-card.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { BookImageService } from '../../../services/book-image/book-image.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -56,7 +55,8 @@ export class MainPageComponent {
   constructor(
     public authService: AuthService,
     private _bookImageService: BookImageService,
-  ) {
+    private _router: Router,
+    ) {
   }
 
 
@@ -72,6 +72,7 @@ export class MainPageComponent {
   public generateBooks(count: string): void {
     const bookCount: number = parseInt(count, 10);
     this._bookImageService.generate(bookCount).subscribe();
+    this._router.navigate(['/books']);
   }
 
 

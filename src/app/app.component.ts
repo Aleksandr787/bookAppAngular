@@ -24,20 +24,7 @@ export class AppComponent {
 
   constructor(
     public authService : AuthService
-  ) {
-  }
+  ) {}
 
-  // public login() : void {
-  //   this.authService.login();
-  // }
-
-  
-  // public logout() : void {
-  //   this.authService.logout();
-  // }
-
-  // public isAutorized() : boolean {
-  //   return this.authService.isAutorized;
-  // }
   title = 'lection-angular';
 }

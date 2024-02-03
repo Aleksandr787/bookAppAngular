@@ -63,7 +63,7 @@ export class NavigationComponent {
   }
 
   public addBookDialog(): void {
-    this._bookImageService.addBookDialog();
+    this._bookImageService.dialogBook();
   }
 
   public logout(): void {

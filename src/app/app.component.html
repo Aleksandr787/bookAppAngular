@@ -1,17 +1,9 @@
-<!-- <cm-navigation *ngIf="authService.isAutorized"></cm-navigation>
-<router-outlet></router-outlet> -->
-
 <div *ngIf="authService.isAutorized" class="container">
-
     <cm-navigation></cm-navigation>
-    <!-- <cm-navigation ></cm-navigation> -->
 
     <main class="main">
-      <!-- <a *ngIf="!authService.isAutorized" mat-raised-button color="primary" (click)="login()"> Login  </a> -->
-      <!-- <p> Welcome {{authService.user}}</p> -->
       <router-outlet></router-outlet>
     </main>
-
 </div>
 
 <router-outlet *ngIf="authService.isNotAutorized"></router-outlet>

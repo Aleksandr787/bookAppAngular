@@ -15,7 +15,6 @@ export class BookImageService {
   public myEventEmitter: EventEmitter<any> = new EventEmitter<any>();
   
   private _defaultImageUrl: string = 'https://i.ebayimg.com/thumbs/images/g/BdQAAOSwvZNhtArq/s-l1600.jpg';
-
   //rivate _defaultImageUrl: string = 'https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?size=338&ext=jpg&ga=GA1.1.1448711260.1706486400&semt=sph;';
 
   constructor(
@@ -67,18 +66,17 @@ export class BookImageService {
 
       img.onload = function () {
         if (img.naturalWidth === 0 || img.naturalHeight === 0) {
-          // Image loaded successfully but has no dimensions (probably a 404 error)
           observer.next(true);
-        } else {
-          // Image loaded successfully
+        } 
+        else {
           observer.next(false);
         }
+
         observer.complete();
         console.log('IMAGE Done');
       };
 
       img.onerror = function () {
-        //img.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrBsj1Q8Qg0z9q7L8lau6_sma9XgEE5C_RZQ&usqp=CAU';
         console.log('IMAGE ErroR!!');
         observer.next(true);
         observer.complete();
@@ -87,7 +85,7 @@ export class BookImageService {
     })
   }
 
-  public addBookDialog(): void {
+  public dialogBook(): void {
     const dialogRef = this._dialog.open(AddBookImageComponent);
 
     dialogRef.afterClosed().subscribe((result: IAddBookImage) => {
