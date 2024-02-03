@@ -8,7 +8,6 @@ $border: 2px solid var(--md-sys-color-on-surface);
 
 .image-border{
     border-radius: 16px;
-    //border-bottom-right-radius: 0px;
     border: $border;
 }
 
@@ -28,47 +27,41 @@ $border: 2px solid var(--md-sys-color-on-surface);
     flex-direction: column;
     align-self: center;
     justify-content: center;
+    box-sizing: border-box;
     padding: 32px;
     gap: 32px;
-    box-sizing: border-box;
 
     @media (max-width: $phone-media) {
         padding: 8px;
         padding-top: 24px;
         padding-bottom: 0px;
     }
+    
     &__left {
         display: flex;
         flex-direction: row;
         align-items: end;
         justify-content: center;
-        // gap: 8px;
 
         &__image {
-
-
             display: flex;
-            border-radius: 16px;
-            // height: calc(100% - 8px);
-            // width: calc(100% - 8px);
-            width: 250px;
-
             object-fit: cover;
             aspect-ratio: 3/4;
+            border-radius: 16px;
+            width: 250px;
             padding: 6px;
 
             @media (max-width: $phone-media) {
                 width: 200px;
             }
-        
         }
 
         &__buttons {
             display: flex;
-            gap: 8px;
             flex-direction: column;
             justify-content: end;
             height: min-content;
+            gap: 8px;
             border-radius: 16px;
             border-top-left-radius: 0px;
             border-bottom-left-radius: 0px;
@@ -77,7 +70,6 @@ $border: 2px solid var(--md-sys-color-on-surface);
             margin-bottom: 24px;
             border-left: none;
         }
-
     }
 
     &__right {
@@ -99,21 +91,21 @@ $border: 2px solid var(--md-sys-color-on-surface);
             box-sizing: border-box;
 
             &__name {
+                word-break: break-word;
                 @include typography.headline-medium;
                 color: var(--md-sys-color-on-surface);
 
             }
 
             &__author {
+                word-break: break-word;
                 color: var(--md-sys-color-on-surface-variant);
-
                 @include typography.title-medium;
                 margin-bottom: 12px
             }
 
             &__description {
                 color: var(--md-sys-color-on-surface-variant);
-
                 @include typography.body-large;
             }
 

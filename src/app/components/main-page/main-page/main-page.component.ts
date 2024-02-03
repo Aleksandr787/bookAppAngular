@@ -26,25 +26,18 @@ import { MatIconModule } from '@angular/material/icon';
         <h1>Generate your books right now!</h1>
       </div>
 
-
       <div class="slider-wrapper">
         <mat-slider class="slider" min="0" max="30" step="1" discrete [displayWith]="formatLabel" >
           <input matSliderThumb #slider>
         </mat-slider>
       </div>
 
-      <!-- <p>{{slider.value}}</p> -->
       <div class="button-wrapper-icons">
         <mat-icon class="material-symbols-outlined">arrow_forward</mat-icon>
           <button mat-flat-button (click)="generateBooks(slider.value)">Generate</button>
         <mat-icon class="material-symbols-outlined">arrow_back</mat-icon>
       </div>
     </div>
-  
-    <!-- <main class="main">
-      <a *ngIf="!authService.isAutorized" mat-raised-button color="primary" (click)="login()"> Login  </a>
-      <p> Welcome {{authService.user}}</p>
-    </main> -->
   `,
   styleUrl: './main-page.component.scss'
 })
@@ -61,10 +54,6 @@ export class MainPageComponent {
 
 
   public formatLabel(value: number): string {
-    // if (value >= 1000) {
-    //   return Math.round(value / 1000) + 'k';
-    // }
-
     this.sliderValue = `${value}`;
     return `${value}`;
   }
@@ -74,10 +63,4 @@ export class MainPageComponent {
     this._bookImageService.generate(bookCount).subscribe();
     this._router.navigate(['/books']);
   }
-
-
-  // public logout(): void {
-  //   this.authService.logout();
-  // }
-
 }

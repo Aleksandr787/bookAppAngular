@@ -29,16 +29,7 @@ import { MatInputModule } from '@angular/material/input';
     <div mat-dialog-actions class="actions">
       <button mat-flat-button (click)="onClose()" >No</button>
       <button mat-flat-button (click)="onDelete()" >Yes</button>
-<!-- 
-      <p class="actions__text-button" (click)="onClose()" >Cansel</p>
-      <p class="actions__text-button" (click)="onDelete()">Delete</p> -->
     </div>
-
-    <!-- <div class="close">
-      <button mat-icon-button (click)="onClose()">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-    </div> -->
   `,
   styleUrl: './delete-books.component.scss'
 })

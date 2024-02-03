@@ -96,7 +96,7 @@ export class BookImageService {
     });
   }
 
-  public deleteBooksDialog(): void {
+  public dialogDeleteBook(): void {
     const dialogRef = this._dialog.open(DeleteBooksComponent);
 
     dialogRef.afterClosed().subscribe((result: boolean) => {

@@ -47,14 +47,7 @@ import { Router } from '@angular/router';
 
         <div class="register__buttons">
           <button mat-flat-button [disabled]="bookForm.invalid" (click)="register()">Create account</button>
-          <!-- <button mat-flat-button (click)="logout()">Already have an account? Login</button>  -->
         </div>
-
-
-        <!-- <div mat-dialog-actions>
-          <button mat-flat-button (click)="onClose()">No Thanks</button>
-          <button mat-flat-button (click)="onOk()" [disabled]="bookForm.invalid">Ok</button>
-        </div> -->
       </div>
     </div>
 
@@ -73,7 +66,6 @@ export class RegistrationComponent {
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     password: new FormControl<string>('', [Validators.required]),
   });
-
 
   public get name(): FormControl<string> {
     return this.bookForm.get('name') as FormControl<string>;

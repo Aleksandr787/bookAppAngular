@@ -45,40 +45,9 @@ import { MatSliderModule } from '@angular/material/slider';
 
         <div class="register__buttons">
           <button mat-flat-button [disabled]="bookForm.invalid" (click)="login()">Sign In</button>
-          <!-- <button mat-flat-button (click)="logout()">Already have an account? Login</button>  -->
         </div>
-
-
-        <!-- <div mat-dialog-actions>
-          <button mat-flat-button (click)="onClose()">No Thanks</button>
-          <button mat-flat-button (click)="onOk()" [disabled]="bookForm.invalid">Ok</button>
-        </div> -->
       </div>
     </div>
-
-    <!-- <div class="login">
-      <form [formGroup]="bookForm" class="bookCardForm">
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email">
-          <mat-error *ngIf="email.hasError('required')">Email is required</mat-error>    
-          <mat-error *ngIf="email.hasError('email')">Email is invalid</mat-error>    
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <mat-error *ngIf="password.hasError('required')">Password is required</mat-error>
-          <input type="password" matInput formControlName="password">    
-        </mat-form-field>
-      </form>
-
-      <button mat-flat-button [disabled]="bookForm.invalid" (click)="login()">Sign In</button>
-      <button mat-flat-button (click)="toRegister()">Don't have an account? Sign up</button>
-
-      <div mat-dialog-actions>
-        <button mat-flat-button (click)="onClose()">No Thanks</button>
-        <button mat-flat-button (click)="onOk()" [disabled]="bookForm.invalid">Ok</button>
-      </div>
-    </div> -->
   `,
   styleUrl: './login.component.scss'
 })

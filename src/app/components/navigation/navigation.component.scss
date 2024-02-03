@@ -16,10 +16,6 @@ $phone-media: 450px;
     background: var(--md-sys-color-surface-container-low);
     width: 360px;
     
-    // @media(max-width: 1100px) {
-    //     width: 250px;
-    // }
-
     @media(max-width: $tablet-media) {
         width: 80px;
     }

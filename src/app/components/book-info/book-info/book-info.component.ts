@@ -42,12 +42,9 @@ import { DeleteBooksComponent } from '../../dialogs/delete-books/delete-books/de
             <img class="card__left__image" src={{book.imageUrl}} alt="">
           </div>
           <div class="card__left__buttons">
-            <!-- <button mat-flat-button (click)="onDelete()">Delete</button>
-            <button mat-flat-button (click)="editBook(book)">Edit</button> -->
             <button mat-fab color="warn" (click)="onDelete()">
               <mat-icon class="material-symbols-outlined">delete</mat-icon>
             </button>
-
             <button mat-fab color="primary" (click)="editBook(book)">
               <mat-icon class="material-symbols-outlined">edit</mat-icon>
             </button>
@@ -69,14 +66,11 @@ import { DeleteBooksComponent } from '../../dialogs/delete-books/delete-books/de
         </div>
       </div>
     </div>
-
-
   `,
   styleUrl: './book-info.component.scss'
 })
 export class BookInfoComponent {
-  // Кнопка ПОД image buttons delete -> dialog, edit -> dialog
-  private route: ActivatedRoute = inject(ActivatedRoute);
+  private _route: ActivatedRoute = inject(ActivatedRoute);
   private _bookId: string = '';
   public book: IBookImage = {
     id: '',
@@ -90,8 +84,7 @@ export class BookInfoComponent {
     private _dialog: MatDialog,
     private _bookImageService: BookImageService
   ) {
-
-    this._bookId = this.route.snapshot.params['id'];
+    this._bookId = this._route.snapshot.params['id'];
     this.updateBook(this._bookId);
   }
 
@@ -122,11 +115,10 @@ export class BookInfoComponent {
 
     dialogRef.afterClosed().subscribe((result: IEditBookImage) => {
       if (!result) return;
-
       this._bookImageService.editBook(result).subscribe(() => {
         this.updateBook(this._bookId);
       });
-
     });
   }
+
 }

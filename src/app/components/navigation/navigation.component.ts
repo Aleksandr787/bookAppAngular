@@ -49,8 +49,6 @@ import { BookImageService } from '../../services/book-image/book-image.service';
           </a>
         </mat-nav-list>
       </div>
-
-      <!-- <div class="line"></div> -->
     </div>
   `,
   styleUrl: './navigation.component.scss'

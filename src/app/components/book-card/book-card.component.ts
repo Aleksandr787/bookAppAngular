@@ -2,21 +2,21 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
-import { IBookImage, IEditBookImage } from '../../interfaces/book';
+import { IBookImage } from '../../interfaces/book';
 import { BookImageService } from '../../services/book-image/book-image.service';
 import { AuthorPipe } from "../../pipes/author/author.pipe";
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { AddBookImageComponent } from '../dialogs/add-book-image/add-book-image.component';
 import { MatButtonModule} from '@angular/material/button'
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { DeleteBooksComponent } from '../dialogs/delete-books/delete-books/delete-books.component';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'cm-book-card',
   standalone: true,
   template: `
     <div class="container-main">
+
       <div class="header-wrapper">
         <div class="header">
           <div class="header__search">
@@ -33,14 +33,9 @@ import { Router, RouterModule } from '@angular/router';
           </button>
         </div>
       </div>
-
-
-
-
+      
       <div class="container-cards">
-
         @for (book of booksFilteredList; track book) {
-          
           <div matRipple class="card" [routerLink]="['/books', book.id]">
             <img src={{book.imageUrl}} alt="" class="card__image">
             <div class="card__info">
@@ -48,11 +43,9 @@ import { Router, RouterModule } from '@angular/router';
               <span class="card__info__author">{{book | author}}</span>
             </div>
           </div>  
-        
         }
-
       </div>
-
+    
     </div>
 
   `,
@@ -77,13 +70,12 @@ export class BookCardComponent {
 
   constructor(
     private _bookImageService: BookImageService,
-    private _dialog: MatDialog,
-    private _router: Router
+    private _dialog: MatDialog
   ) { }
 
   public ngOnInit(): void {
     this.loadBook();
-
+    
     this._bookImageService.myEventEmitter.subscribe(() => {
       this.loadBook();
     })
@@ -121,47 +113,4 @@ export class BookCardComponent {
       }
     });
   }
-
-  // public editBook(book: IEditBookImage): void {
-  //   const dialogRef = this._dialog.open(AddBookImageComponent, { data: book });
-
-  //   dialogRef.afterClosed().subscribe((result: IEditBookImage | string) => {
-  //     if (!result) return;
-
-  //     if (typeof result === 'string') {
-  //       this._bookImageService.deleteBook(result).subscribe(() => {
-  //         this.loadBook();
-  //       });
-  //     }
-  //     else {
-  //       this._bookImageService.editBook(result).subscribe(() => {
-  //         this.loadBook();
-  //       });
-  //     }
-
-  //   });
-  // }
-
-    // public generateBooks(): void {
-  //   this.bookImageService.generate().subscribe(() => {
-  //     this.loadBook();
-  //   });
-  // }
-
-  // public addBookDialog(): void {
-  //   const dialogRef = this.dialog.open(AddBookImageComponent);
-
-  //   dialogRef.afterClosed().subscribe((result: IAddBookImage) => {
-  //     if (!result) return;
-  //     this.bookImageService.addBook(result).subscribe(() => {
-  //       this.loadBook();
-  //     });
-  //   });
-  // }
-
-  // public deleteAll(): void {
-  //   this.bookImageService.deleteAll().subscribe(() => {
-  //     this.loadBook();
-  //   });
-  // }
 }
