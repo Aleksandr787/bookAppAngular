@@ -5,14 +5,13 @@ import { AddBookImageComponent } from '../../components/dialogs/add-book-image/a
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { DeleteBooksComponent } from '../../components/dialogs/delete-books/delete-books/delete-books.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookImageService {
 
-  public myEventEmitter: EventEmitter<any> = new EventEmitter<any>();
+  public eventAddBook: EventEmitter<any> = new EventEmitter<any>();
   
   private _defaultImageUrl: string = 'https://i.ebayimg.com/thumbs/images/g/BdQAAOSwvZNhtArq/s-l1600.jpg';
   //rivate _defaultImageUrl: string = 'https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?size=338&ext=jpg&ga=GA1.1.1448711260.1706486400&semt=sph;';
@@ -32,12 +31,10 @@ export class BookImageService {
   }
 
   public addBook(bookAdd: IAddBookImage): Observable<any> {
-    console.log("IT'S ADD BOOK!");
-
+    console.log("Add book");
     return this.isNotValidImageUrl(bookAdd.imageUrl).pipe(
       tap((result) => {
         if (result) {
-          console.log('REALY AErroor');
           bookAdd.imageUrl = this._defaultImageUrl;
         }
       }),
@@ -45,27 +42,13 @@ export class BookImageService {
     );
   }
 
-  // private isValidImageUrl(url: string): boolean {
-  //   const img = new Image();
-  //   img.src = url;
-  //   return img.complete && img.naturalWidth !== 0;
-  // }
-
   private isNotValidImageUrl(url: string): Observable<boolean> {
     const img = new Image();
     img.src = url;
 
     return new Observable<boolean>((observer) => {
-      
-      // old code
-      // img.onload = function () {
-      //   observer.next(false);
-      //   observer.complete();
-      //   console.log('IMAGE Done');
-      // };
-
       img.onload = function () {
-        if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+        if (img.width < 100) {
           observer.next(true);
         } 
         else {
@@ -73,46 +56,32 @@ export class BookImageService {
         }
 
         observer.complete();
-        console.log('IMAGE Done');
       };
 
       img.onerror = function () {
-        console.log('IMAGE ErroR!!');
         observer.next(true);
         observer.complete();
       };
-
     })
   }
 
-  public dialogBook(): void {
+  public dialogAddBook(): void {
     const dialogRef = this._dialog.open(AddBookImageComponent);
 
     dialogRef.afterClosed().subscribe((result: IAddBookImage) => {
       if (!result) return;
       this.addBook(result).subscribe(() => {
-        this.myEventEmitter.emit();
+        this.eventAddBook.emit();
       });
     });
   }
 
-  public dialogDeleteBook(): void {
-    const dialogRef = this._dialog.open(DeleteBooksComponent);
-
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (!result) return;
-      this.deleteAll().subscribe();
-    });
-  }
-
-
   public editBook(editBookModel: IEditBookImage): Observable<any> {
-    console.log("IT'S EDIT BOOK!");
+    console.log("Edit book");
 
     return this.isNotValidImageUrl(editBookModel.imageUrl).pipe(
       tap((result) => {
         if (result) {
-          console.log('REALY AErroor');
           editBookModel.imageUrl = this._defaultImageUrl;
         }
       }),

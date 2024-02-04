@@ -19,7 +19,6 @@ import { MatSliderModule } from '@angular/material/slider';
     MatInputModule,
     MatButtonModule,
     MatSliderModule
-
   ],
   template: `
     <div class="wrapper">

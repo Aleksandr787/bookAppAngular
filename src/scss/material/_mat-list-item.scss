@@ -1,7 +1,7 @@
 @use '../mixins/typography';
 
-$tablet-media: 800px;
-$phone-media: 450px;
+$tablet-media: 950px;
+$phone-media: 500px;
 
 .mdc-list.mdc-list {
     height: auto;
@@ -22,7 +22,7 @@ $phone-media: 450px;
     @media(max-width: $tablet-media) {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 12px;
 
         --mdc-list-list-item-container-shape: 16px;
     }

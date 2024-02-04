@@ -3,8 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
-$tablet-media: 800px;
-$phone-media: 450px;
+$tablet-media: 950px;
+$phone-media: 500px;
+$phone-small-media: 400px;
 
 .container-main {
     position: relative;
@@ -88,24 +89,28 @@ $phone-media: 450px;
 }
 
 .container-cards {
+    --_min-width-grid: 176px;
+
     display: grid;
     padding: 16px;
     gap: 16px;
     justify-content: center;
-    grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--_min-width-grid), 1fr));
 
-    @media (max-width: 380px) {
+    @media (max-width: $phone-small-media) {
         grid-template-columns: 1fr 120px 120px 1fr;
     }
 
-    @media (min-width: 380px) and (max-width: 480px) {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    }
+    // @media (min-width: 380px) and (max-width: 480px) {
+    //     --_min-width-grid: 160px;
+    // }
 }
 
 .card {
+    --_height-card-info: 104px;
+
     display: grid;
-    grid-template-rows: 1fr 104px;
+    grid-template-rows: 1fr var(--_height-card-info);
     border-radius: 16px;
     background: var(--md-sys-color-surface-container-highest);
 
@@ -131,7 +136,7 @@ $phone-media: 450px;
         }
     }
 
-    @media (max-width: 380px) {
+    @media (max-width: $phone-small-media) {
         grid-column: 2/-2;
     }
 
@@ -149,7 +154,7 @@ $phone-media: 450px;
         justify-content: space-between;
         gap: 8px;
         flex-grow: 1;
-        max-height: 104px;
+        max-height: var(--_height-card-info);
         box-sizing: border-box;
         padding: 16px;
 

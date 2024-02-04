@@ -76,7 +76,7 @@ export class BookCardComponent {
   public ngOnInit(): void {
     this.loadBook();
     
-    this._bookImageService.myEventEmitter.subscribe(() => {
+    this._bookImageService.eventAddBook.subscribe(() => {
       this.loadBook();
     })
   }
